@@ -1,0 +1,67 @@
+﻿@page
+@model Obligatorio_2.Pages.PageCliente.ListaModel
+@{
+    ViewData["Title"] = "Lista de Clientes";
+}
+<div>
+    <h1 class="display-4 text-center">Lista de Clientes</h1>
+    <div class="row">
+        <div class="col-sm-12 text-right">
+            <a class="btn btn-success" asp-page="./Alta"><i class="fa fa-plus"></i> Agregar</a>
+        </div>
+    </div>
+    <table class="table text-center">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Cedula</td>
+                <td>FechaNac</td>
+                <td>Teléfono</td>
+                <td>Celular</td>
+                <td>Email</td>
+                <td>Dirección</td>
+                <td>NumLibreta</td>
+                <td>FechaVencLibreta</td>
+                <td>Acciones</td>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Clientes != null && Model.Clientes.Any())
+            {
+                @foreach (var unCli in Model.Clientes)
+                {
+                    <tr>
+                        <td>@unCli.Id</td>
+                        <td>@unCli.Cedula</td>
+                        <td>@unCli.FechaNac</td>
+                        <td>@unCli.Telefono</td>
+                        <td>@unCli.Celular</td>
+                        <td>@unCli.Email</td>
+                        <td>@unCli.Direccion</td>
+                        <td>@unCli.NumLibreta</td>
+                        <td>@unCli.FechaVencLibreta</td>
+
+                        <td>
+                            <div class="mt-2">
+                                <a asp-page="./Detalle" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tooltip on top"
+                                   asp-route-id="@unCli.Id"><i class="fa fa-eye"></i></a>
+                                <a asp-page="./Modificar" class="btn btn-warning"
+                                   asp-route-id="@unCli.Id"><i class="fa fa-edit"></i></a>
+                                <a asp-page="./Baja" class="btn btn-danger"
+                                   asp-route-id="@unCli.Id"><i class="fa fa-trash-alt"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5" class="text-center">
+                        No hay Clientes ingresados
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
