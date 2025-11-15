@@ -26,6 +26,7 @@ namespace Obligatorio_2.Dominio
            string pDireccion, string pNumLibreta, DateTime pFechaVencLibreta) :
             base(pId, pNombre, pApellido)
         {
+            
             aCedula = pCedula;
             aFechaNac = pFechaNac;
             aTelefono = pTelefono;
