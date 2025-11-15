@@ -1,0 +1,161 @@
+﻿using Obligatorio_2.Persistencia;
+
+namespace Obligatorio_2.Dominio
+{
+    public class Controladora
+    {
+        private PControladora Persistencia;
+
+        private static List<Vehiculo> aListaVehiculos = new List<Vehiculo>();
+        private static List<Cliente> aListaClientes = new List<Cliente>();
+        private static List<Accesorios> aListaAccesiorios = new List<Accesorios>();
+
+
+        #region " Clientes "
+
+        public int ProximoClienteID()
+        {
+            return Persistencia.ProximoClienteId();
+        }
+        public List<Cliente> ListarClientes()
+        {
+            aListaClientes = Persistencia.ListaClientes();
+            return aListaClientes;
+        }
+        public Cliente BuscarCliente(int pId)
+        {
+            foreach (Cliente unCliente in aListaClientes)
+            {
+                if (unCliente.Id == pId)
+                {
+                    return unCliente;
+                }
+            }
+            return null;
+        }
+        public bool AltaCliente(Cliente pCliente)
+        {
+            Cliente ComparoCliente = BuscarCliente(pCliente.Id);
+            if (ComparoCliente == null)
+            {
+                if (Persistencia.AltaCliente(pCliente))
+                {
+                    aListaClientes.Add(pCliente);
+                    return true;
+                }
+            }
+            return false;
+        }
+        public bool BajaCliente(int pId)
+        {
+            Cliente unCliente = BuscarCliente(pId);
+            if (unCliente != null)
+            {
+                if (Persistencia.BajaCliente(pId))
+                {
+                    aListaClientes.Remove(unCliente);
+                    return true;
+                }
+            }
+            return false;
+        }
+        public bool ModificarCliente(int pId, string pCedula, DateTime pFechaNac, string pTelefono, string pCelular, string pEmail, string pDireccion, string pNumLibreta, DateTime pFechaVencLibreta)
+        {
+            Cliente unCliente = BuscarCliente(pId);
+            if (unCliente != null)
+            {
+                Cliente nuevoCliente = new Cliente(pId, pCedula, pFechaNac, pTelefono, pCelular, pEmail, pDireccion, pNumLibreta, pFechaVencLibreta);
+                if (Persistencia.ModificarCliente(nuevoCliente))
+                {
+                    unCliente.Cedula = pCedula;
+                    unCliente.FechaNac = pFechaNac;
+                    unCliente.Telefono = pTelefono;
+                    unCliente.Celular = pCelular;
+                    unCliente.Email = pEmail;
+                    unCliente.Direccion = pDireccion;
+                    unCliente.NumLibreta = pNumLibreta;
+                    unCliente.FechaVencLibreta = pFechaVencLibreta;
+                    return true;
+                }
+
+            }
+            return false;
+        }
+            
+        #endregion
+
+        #region " Vehiculos "
+
+        public int ProximoVehiculoID()
+        {
+            return Persistencia.ProximoVehiculoId();
+        }
+        public List<Vehiculo> ListarVehiculos()
+        {
+            aListaVehiculos = Persistencia.ListaVehiculos();
+            return aListaVehiculos;
+        }
+        public Vehiculo BuscarVehiculo(int pId)
+        {
+            foreach (Vehiculo unVehiculo in aListaVehiculos)
+            {
+                if (unVehiculo.Id == pId)
+                {
+                    return unVehiculo;
+                }
+            }
+            return null;
+        }
+        public bool AltaVehiculo(Vehiculo pVehiculo)
+        {
+            Vehiculo ComparoVehiculo = BuscarVehiculo(pVehiculo.Id);
+            if (ComparoVehiculo == null)
+            {
+                if (Persistencia.AltaVehiculo(pVehiculo))
+                {
+                    aListaVehiculos.Add(pVehiculo);
+                    return true;
+                }
+            }
+            return false;
+        }
+        public bool BajaVehiculo(int pId)
+        {
+            Vehiculo unVehiculo = BuscarVehiculo(pId);
+            if (unVehiculo != null)
+            {
+                if (Persistencia.BajaVehiculo(pId))
+                {
+                    aListaVehiculos.Remove(unVehiculo);
+                    return true;
+                }
+            }
+            return false;
+        }
+        public bool ModificarVehiculo(int pId, string pMatricula, string pMarca, string pModelo, DateTime pAño, string pTipo, int pCapPasajeros, string pCombustible, string pColor, double pPrecioxDia, string pEstado)
+        {
+            Vehiculo unVehiculo = BuscarVehiculo(pId);
+            if (unVehiculo != null)
+            {
+                Vehiculo nuevoVehiculo = new Vehiculo(pId, pMatricula, pMarca, pModelo, pAño, pTipo, pCapPasajeros, pCombustible, pColor, pPrecioxDia, pEstado);
+                if (Persistencia.ModificarVehiculo(nuevoVehiculo))
+                {
+                    unVehiculo.Matricula = pMatricula;
+                    unVehiculo.Marca = pMarca;
+                    unVehiculo.Modelo = pModelo;
+                    unVehiculo.Año= pAño;
+                    unVehiculo.Tipo= pTipo;
+                    unVehiculo.CapPasajeros = pCapPasajeros;
+                    unVehiculo.Combustible = pCombustible;
+                    unVehiculo.PrecioxDia = pPrecioxDia;
+                    unVehiculo.Estado = pEstado;
+
+                    return true;
+                }
+
+            }
+            return false;
+        }
+        #endregion
+    }
+}
