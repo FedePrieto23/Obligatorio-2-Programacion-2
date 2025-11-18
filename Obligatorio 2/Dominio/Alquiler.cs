@@ -4,7 +4,7 @@
     {
         private int aId;
         private DateTime aFechaAlquiler;
-        private DateTime aFechaRetiroV;a
+        private DateTime aFechaRetiroV;
         private DateTime aFechaDevoV;
         private Vehiculo aVehiculo;
         private Cliente aCliente;
