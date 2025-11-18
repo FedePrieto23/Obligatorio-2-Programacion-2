@@ -1,9 +1,9 @@
 ﻿@page
-@model Obligatorio_2.Pages.PageCliente.BajaModel
+@model Obligatorio_2.Pages.PageCliente.DetalleModel
 @{
 }
-<div class="text-left">
-    <h1 class="display-4 text-center">Eliminar Cliente</h1>
+<<div class="text-left">
+    <h1 class="display-4 text-center">Detalle del Cliente</h1>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -23,6 +23,12 @@
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.cliente.Telefono)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.cliente.Celular)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.cliente.Celular)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.cliente.Email)
@@ -51,16 +57,8 @@
         
     </dl>
     <hr />
-    <form method="post">
-        <input type="hidden" name="id" value="@Model.cliente.Id" />
-        <div class="row">
-            <div class="col-sm-4">
-                <button type="submit" class="btn btn-danger"
-                        asp-page-handler="Eliminar">
-                    Eliminar
-                </button>
-                <a class="btn btn-warning" asp-page="./Lista">Volver</a>
-            </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <a class="btn btn-warning" asp-page="./Lista">Volver</a>
         </div>
-    </form>
-</div>
+    </div>

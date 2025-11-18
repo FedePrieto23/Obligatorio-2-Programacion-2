@@ -1,0 +1,79 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Obligatorio_2.Dominio;
+
+namespace Obligatorio_2.Pages.PageCliente
+{
+    public class ModificarModel : PageModel
+    {
+        public Cliente cliente { get; set; }
+        public string Mensaje { get; set; }
+        public void OnGet(int id)
+        {
+            Controladora unaControladora = new Controladora();
+            cliente = unaControladora.BuscarCliente(id);
+        }
+        public IActionResult OnPostModificar()
+        {
+            try
+            {
+                if (Request.Form["cedula"] == string.Empty)
+                {
+                    throw new Exception("Debe ingresar la Cedula");
+                }
+                if (Request.Form["fechanac"] == string.Empty)
+                {
+                    throw new Exception("Debe ingresar su Fecha de Nacimiento");
+                }
+                if (Request.Form["telefono"] == string.Empty)
+                {
+                    throw new Exception("Debe ingresar el Teléfono");
+                }
+                if (Request.Form["celular"] == string.Empty)
+                {
+                    throw new Exception("Debe ingresar el Celular");
+                }
+                if (Request.Form["email"] == string.Empty)
+                {
+                    throw new Exception("Debe ingresar el Email");
+                }
+                if (Request.Form["direccion"] == string.Empty)
+                {
+                    throw new Exception("Debe ingresar la Dirección");
+                }
+                if (Request.Form["numlibreta"] == string.Empty)
+                {
+                    throw new Exception("Debe ingresar el Nùmero de la Libreta");
+                }
+                if (Request.Form["fechavenclibreta"] == string.Empty)
+                {
+                    throw new Exception("Debe ingresar Fecha de Vencimiento de la Libreta");
+                }
+
+                int Id = int.Parse(Request.Form["id"]);
+                string Nombre = Request.Form["nombre"];
+                string Apellido = Request.Form["apellido"];
+                string Cedula = Request.Form["cedula"];
+                DateTime FechaNac = DateTime.Parse(Request.Form["fechanac"]);
+                string Telefono = Request.Form["telefono"];
+                string Celular = Request.Form["celular"];
+                string Email = Request.Form["email"];
+                string Direccion = Request.Form["direccion"];
+                string NumLibreta = Request.Form["numlibreta"];
+                DateTime FechaVencLibreta = DateTime.Parse(Request.Form["fechavenclibreta"]);
+
+                Controladora unaControladora = new Controladora();
+                unaControladora.ModificarCliente(Id, Nombre, Direccion, Telefono);
+
+                return Redirect("/PageCliente/Lista");
+            }
+            catch (Exception Error)
+            {
+                Mensaje = Error.Message;
+                int Id = int.Parse(Request.Form["id"]);
+                OnGet(Id);
+            }
+            return Page();
+        }
+    }
+}
