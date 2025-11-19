@@ -1,0 +1,79 @@
+﻿@page
+@model Obligatorio_2.Pages.PageVehiculo.ModificarModel
+@{
+    ViewData["Title"] = "Modificar de Vehiculos";
+}
+<div class="text-left">
+    <h1 class="display-4 text-center">Modificar Cliente</h1>
+    <hr />
+    <form method="post">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="id">Id:</label>
+                    <input type="text" name="id" id="id" readonly class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" name="nombre" id="nombre" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="apellido">Apellido:</label>
+                    <input type="text" name="apellido" id="apellido" class="form-control" />
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="cedula">Cedula:</label>
+                        <input type="text" name="cedula" id="cedula" readonly class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="fechanc">FechaNac:</label>
+                        <input type="text" name="fechanc" id="fechanc" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono:</label>
+                        <input type="text" name="telefono" id="telefono" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="celular">Celular:</label>
+                        <input type="text" name="celular" id="celular" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="text" name="email" id="email" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="direccion">Dirección:</label>
+                        <input type="text" name="direccion" id="direccion" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="numlibreta">NumLibreta:</label>
+                        <input type="text" name="numlibreta" id="numlibreta" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="fechavenclibreta">Fechavenclibreta:</label>
+                        <input type="text" name="fechavenclibreta" id="fechavenclibreta" class="form-control" />
+                    </div>
+
+
+                </div>
+            </div>
+            <hr />
+            <button type="submit" class="btn btn-success"
+                    asp-page-handler="Modificar">
+                Modificar
+            </button>
+            <a class="btn btn-warning" asp-page="./Lista">Volver</a>
+    </form>
+    @if (!string.IsNullOrEmpty(Model.Mensaje))
+    {
+        <div class="row">
+            <div class="col-sm-4">
+                <br />
+                <div class="alert alert-warning" role="alert">
+                    @Model.Mensaje
+                </div>
+            </div>
+        </div>
+    }
+</div>

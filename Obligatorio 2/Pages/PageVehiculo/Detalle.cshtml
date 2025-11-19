@@ -1,0 +1,87 @@
+﻿@page
+@model Obligatorio_2.Pages.PageVehiculo.DetalleModel
+@{
+}
+<div class="text-left">
+    <h1 class="display-4 text-center">Detalle del Vehículo</h1>
+    <hr />
+    <dl class="row">
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.vehiculo.Matricula)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.vehiculo.Matricula)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.vehiculo.Marca)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.vehiculo.Marca)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.vehiculo.Modelo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.vehiculo.Modelo)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.vehiculo.Año)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.vehiculo.Año)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.vehiculo.Tipo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.vehiculo.Tipo)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.vehiculo.CapPasajeros)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.vehiculo.CapPasajeros)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.vehiculo.Combustible)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.vehiculo.Combustible)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.vehiculo.Color)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.vehiculo.Color)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.vehiculo.PrecioxDia)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.vehiculo.PrecioxDia)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.vehiculo.Estado)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.vehiculo.Estado)
+        </dd>
+
+    </dl>
+    <hr />
+    <div class="row">
+        <div class="col-sm-4">
+            <a class="btn btn-warning" asp-page="./Lista">Volver</a>
+        </div>
+    </div>
+</div>
