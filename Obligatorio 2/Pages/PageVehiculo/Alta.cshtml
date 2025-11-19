@@ -1,4 +1,7 @@
 ﻿@page
+@model Obligatorio_2.Pages.PageVehiculo.AltaModel
+@{
+    @page
 @model Obligatorio_2.Pages.PageCliente.AltaModel
 @{
     ViewData["Title"] = "Alta de Clientes";
@@ -14,45 +17,45 @@
                     <input type="text" name="id" id="id" readonly class="form-control" asp-for="id" />
                 </div>
                 <div class="form-group">
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" name="nombre" id="nombre" class="form-control" />
+                        <label for="matricula">Matricula:</label>
+                        <input type="text" name="matricula" id="matricula" class="form-control" />
                 </div>
                 <div class="form-group">
-                    <label for="apellido">Apellido:</label>
-                    <input type="text" name="apellido" id="apellido" class="form-control" />
+                    <label for="marca">Marca:</label>
+                        <input type="text" name="marca" id="marca" class="form-control" />
                 </div>
             <div class="col-sm-4">
                 <div class="form-group">
-                    <label for="cedula">Cedula:</label>
-                    <input type="text" name="cedula" id="cedula" readonly class="form-control" asp-for="id" />
+                    <label for="modelo">Modelo:</label>
+                      <input type="text" name="modelo" id="modelo" readonly class="form-control"/>
                 </div>
                 <div class="form-group">
-                    <label for="fechanc">FechaNac:</label>
-                    <input type="text" name="fechanc" id="fechanc" class="form-control" />
+                            <label for="año">Año:</label>
+                            <input type="text" name="año" id="año" class="form-control" />
                 </div>
                 <div class="form-group">
-                    <label for="telefono">Teléfono:</label>
-                    <input type="text" name="telefono" id="telefono" class="form-control" />
+                            <label for="tipo">Tipo:</label>
+                            <input type="text" name="tipo" id="tipo" class="form-control" />
                 </div>
                 <div class="form-group">
-                    <label for="celular">Celular:</label>
-                    <input type="text" name="celular" id="celular" class="form-control" />
+                    <label for="cappasajeros">CapPasajeros:</label>
+                            <input type="text" name="cappasajeros" id="cappasajeros" class="form-control" />
                 </div>
                 <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="text" name="email" id="email" class="form-control" />
+                            <label for="combustible">Combustible:</label>
+                            <input type="text" name="combustible" id="combustible" class="form-control" />
                 </div>
                 <div class="form-group">
-                    <label for="direccion">Dirección:</label>
-                    <input type="text" name="direccion" id="direccion" class="form-control" />
+                    <label for="color">Color:</label>
+                            <input type="text" name="color" id="color" class="form-control" />
                 </div>
                 <div class="form-group">
-                    <label for="numlibreta">NumLibreta:</label>
-                    <input type="text" name="numlibreta" id="numlibreta" class="form-control" />
+                            <label for="precioxdia">PrecioxDia:</label>
+                            <input type="text" name="precioxdia" id="precioxdia" class="form-control" />
                 </div>
                 <div class="form-group">
-                    <label for="fechavenclibreta">Fechavenclibreta:</label>
-                    <input type="text" name="fechavenclibreta" id="fechavenclibreta" class="form-control" />
+                    <label for="estado">Estado:</label>
+                            <input type="text" name="estado" id="estado" class="form-control" />
                 </div>
 
                 
@@ -77,3 +80,4 @@
         </div>
     }
 </div>
+}

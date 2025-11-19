@@ -7,8 +7,4 @@
     <RootNamespace>Obligatorio_2</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Pages\PageVehiculo\" />
-  </ItemGroup>
-
 </Project>
