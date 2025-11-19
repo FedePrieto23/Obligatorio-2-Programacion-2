@@ -17,9 +17,25 @@ namespace Obligatorio_2.Pages.PageCliente
         {
             try
             {
+                if (Request.Form["id"] == string.Empty)
+                {
+                    throw new Exception("Debe ingresar el ID");
+                }
+                if (!int.TryParse(Request.Form["id"], out _))
+                {
+                    throw new Exception("El ID debe ser numérico");
+                }
                 if (Request.Form["cedula"] == string.Empty)
                 {
                     throw new Exception("Debe ingresar la Cedula");
+                }
+                if (Request.Form["nombre"] == string.Empty)
+                {
+                    throw new Exception("Debe ingresar el Nombre");
+                }
+                if (Request.Form["apellido"] == string.Empty)
+                {
+                    throw new Exception("Debe ingresar el Apellido");
                 }
                 if (Request.Form["fechanac"] == string.Empty)
                 {
@@ -63,15 +79,15 @@ namespace Obligatorio_2.Pages.PageCliente
                 DateTime FechaVencLibreta = DateTime.Parse(Request.Form["fechavenclibreta"]);
 
                 Controladora unaControladora = new Controladora();
-                unaControladora.ModificarCliente(Id, Nombre, Direccion, Telefono);
-
-                return Redirect("/PageCliente/Lista");
+                if( unaControladora.ModificarCliente(Id, Apellido, Cedula, FechaNac, Telefono, Celular, Email, Direccion, NumLibreta, FechaVencLibreta)
+                {
+                    return Redirect("/PageCliente/Lista");
+                }
+                throw new Exception("Ocurrió un error al modificar");
             }
             catch (Exception Error)
             {
                 Mensaje = Error.Message;
-                int Id = int.Parse(Request.Form["id"]);
-                OnGet(Id);
             }
             return Page();
         }

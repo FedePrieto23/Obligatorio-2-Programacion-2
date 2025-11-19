@@ -2,15 +2,33 @@
 @model Obligatorio_2.Pages.PageCliente.DetalleModel
 @{
 }
-<<div class="text-left">
+<div class="text-left">
     <h1 class="display-4 text-center">Detalle del Cliente</h1>
     <hr />
     <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.cliente.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.cliente.Id)
+        </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.cliente.Cedula)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.cliente.Cedula)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.cliente.Nombre)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.cliente.Nombre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.cliente.Apellido)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.cliente.Apellido)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.cliente.FechaNac)
@@ -54,7 +72,6 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.cliente.FechaVencLibreta)
         </dd>
-        
     </dl>
     <hr />
     <div class="row">
@@ -62,3 +79,4 @@
             <a class="btn btn-warning" asp-page="./Lista">Volver</a>
         </div>
     </div>
+</div>

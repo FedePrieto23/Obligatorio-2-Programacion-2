@@ -7,10 +7,9 @@ namespace Obligatorio_2.Pages.PageCliente
     public class ListaModel : PageModel
     {
         public List<Cliente> Clientes { get; set; }
-        Controladora unaControladora = new Controladora();
-        
         public void OnGet()
         {
+            Controladora unaControladora = new Controladora();
             Clientes = unaControladora.ListarClientes();
         }
     }
