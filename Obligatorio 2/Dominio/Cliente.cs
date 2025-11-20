@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
+﻿
 namespace Obligatorio_2.Dominio
 {
     public class Cliente : Persona

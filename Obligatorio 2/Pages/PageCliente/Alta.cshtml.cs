@@ -1,6 +1,7 @@
+using Obligatorio_2.Dominio;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Obligatorio_2.Dominio;
+
 
 namespace Obligatorio_2.Pages.PageCliente
 {
@@ -17,6 +18,22 @@ namespace Obligatorio_2.Pages.PageCliente
         {
             try
             {
+                if (Request.Form["id"] == string.Empty)
+                {
+                    throw new Exception("Debe ingresar el ID");
+                }
+                if (!int.TryParse(Request.Form["id"], out _))
+                {
+                    throw new Exception("El ID debe ser numérico");
+                }
+                if (Request.Form["nombre"] == string.Empty)
+                {
+                    throw new Exception("Debe ingresar el Nombre");
+                }
+                if (Request.Form["apellido"] == string.Empty)
+                {
+                    throw new Exception("Debe ingresar el Apellido");
+                }
                 if (Request.Form["cedula"] == string.Empty)
                 {
                     throw new Exception("Debe ingresar la Cedula");
