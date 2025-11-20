@@ -59,17 +59,17 @@ namespace Obligatorio_2.Dominio
             }
             return false;
         }
-        public bool ModificarCliente(int pId, string pCedula, string pNombre, string pApellido , DateTime pFechaNac, string pTelefono, string pCelular, string pEmail, string pDireccion, string pNumLibreta, DateTime pFechaVencLibreta)
+        public bool ModificarCliente(int pId, string pNombre, string pApellido, string pCedula, DateTime pFechaNac, string pTelefono, string pCelular, string pEmail, string pDireccion, string pNumLibreta, DateTime pFechaVencLibreta)
         {
             Cliente unCliente = BuscarCliente(pId);
             if (unCliente != null)
             {
-                Cliente nuevoCliente = new Cliente(pId, pCedula, pNombre, pApellido, pFechaNac, pTelefono, pCelular, pEmail, pDireccion, pNumLibreta, pFechaVencLibreta);
+                Cliente nuevoCliente = new Cliente(pId, pNombre, pApellido, pCedula, pFechaNac, pTelefono, pCelular, pEmail, pDireccion, pNumLibreta, pFechaVencLibreta);
                 if (Persistencia.ModificarCliente(nuevoCliente))
                 {
-                    unCliente.Cedula = pCedula;
                     unCliente.Nombre = pNombre;
                     unCliente.Apellido = pApellido;
+                    unCliente.Cedula = pCedula;
                     unCliente.FechaNac = pFechaNac;
                     unCliente.Telefono = pTelefono;
                     unCliente.Celular = pCelular;
@@ -83,7 +83,7 @@ namespace Obligatorio_2.Dominio
             }
             return false;
         }
-            
+
         #endregion
 
         #region " Vehiculos "
@@ -157,6 +157,14 @@ namespace Obligatorio_2.Dominio
 
             }
             return false;
+        }
+        #endregion
+
+        #region "Cargar Listas" 
+        public void CargarListas()
+        {
+            this.ListarClientes();
+            this.ListarVehiculos();
         }
         #endregion
     }
