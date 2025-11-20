@@ -49,7 +49,7 @@ namespace Obligatorio_2.Persistencia
             return Conexion.Ejecutar(sql);
         }
 
-        public bool ModificarCliente(Cliente unCliente)
+        public bool Modificar(Cliente unCliente)
         {
             string sql = "UPDATE Cliente "
                 + "SET nombre = '" + unCliente.Nombre + "', " +

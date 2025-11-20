@@ -5,9 +5,9 @@ namespace Obligatorio_2.Persistencia
     public class PControladora
     {
         #region " Cliente "
-        public List<Cliente> ListaCliente()
+        public List<Cliente> ListaClientes()
         {
-            return new PCliente().ListaCliente();
+            return new PCliente().ListaClientes();
         }
         public bool AltaCliente(Cliente mCliente)
         {
@@ -51,49 +51,50 @@ namespace Obligatorio_2.Persistencia
         #endregion
 
         #region " Alquiler "
-        public List<Alquiler> ListaAlquileres()
-        {
-            return new PAlquiler().ListaAlquiler();
-        }
-        public bool AltaAlquiler(Alquiler mAlquiler)
-        {
-            return new PAlquiler().Alta(mAlquiler);
-        }
-        public bool BajaAlquiler(int pId)
-        {
-            return new PAlquiler().Baja(pId);
-        }
-        public bool ModificarAlquiler(Alquiler mAlquiler)
-        {
-            return new PAlquiler().Modificar(mAlquiler);
-        }
-        public int ProximoAlquilerId()
-        {
-            return new PAlquiler().ProximoId();
-        }
+        //public List<Alquiler> ListaAlquileres()
+        //{
+        //    return new PAlquiler().ListaAlquiler();
+        //}
+        //public bool AltaAlquiler(Alquiler mAlquiler)
+        //{
+        //    return new PAlquiler().Alta(mAlquiler);
+        //}
+        //public bool BajaAlquiler(int pId)
+        //{
+        //    return new PAlquiler().Baja(pId);
+        //}
+        //public bool ModificarAlquiler(Alquiler mAlquiler)
+        //{
+        //    return new PAlquiler().Modificar(mAlquiler);
+        //}
+        //public int ProximoAlquilerId()
+        //{
+        //    return new PAlquiler().ProximoId();
+        //}
         #endregion
 
         #region " Accesorios "
-        public List<Accesorio> ListaAccesorios()
-        {
-            return new PAccesorio().ListaAccesorios();
-        }
-        public bool AltaAccesorio(Accesorio mAccesorio)
-        {
-            return new PAccesorio().Alta(mAccesorio);
-        }
-        public bool BajaAccesorio(int pId)
-        {
-            return new PAccesorio().Baja(pId);
-        }
-        public bool ModificarAccesorio(Accesorio mAccesorio)
-        {
-            return new PAccesorio().Modificar(mAccesorio);
-        }
-        public int ProximoAccesorioId()
-        {
-            return new PAccesorio().ProximoId();
-        }
+        //public List<Accesorio> ListaAccesorios()
+        //{
+        //    return new PAccesorio().ListaAccesorios();
+        //}
+        //public bool AltaAccesorio(Accesorio mAccesorio)
+        //{
+        //    return new PAccesorio().Alta(mAccesorio);
+        //}
+        //public bool BajaAccesorio(int pId)
+        //{
+        //    return new PAccesorio().Baja(pId);
+        //}
+        //public bool ModificarAccesorio(Accesorio mAccesorio)
+        //{
+        //    return new PAccesorio().Modificar(mAccesorio);
+        //}
+        //public int ProximoAccesorioId()
+        //{
+        //    return new PAccesorio().ProximoId();
+        //}
         #endregion
     }
 }
+

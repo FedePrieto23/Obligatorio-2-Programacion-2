@@ -79,7 +79,7 @@ namespace Obligatorio_2.Pages.PageVehiculo
                 double PrecioxDia = double.Parse(Request.Form["PrecioxDia"]);
                 string Estado = Request.Form["estado"];
                 Controladora unaControladora = new Controladora();
-                unaControladora.ModificarVehiculo(Id, Matricula, Marca, Modelo, Año, Tipo, CapPasajeros,Combustible
+                unaControladora.ModificarVehiculo(Id, Matricula, Marca, Modelo, Año, Tipo, CapPasajeros,Combustible,
                     Color, PrecioxDia, Estado);
 
                 return Redirect("/PageVehiculo/Lista");
