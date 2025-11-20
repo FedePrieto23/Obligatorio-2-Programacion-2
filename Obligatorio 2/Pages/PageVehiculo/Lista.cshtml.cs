@@ -11,7 +11,7 @@ namespace Obligatorio_2.Pages.PageVehiculo
         Controladora unaControladora = new Controladora();
         public void OnGet()
         {
-            Vehiculos = unaControladora.ListarVehiculos();
+           Vehiculos = unaControladora.ListarVehiculos();
         }
     }
 }

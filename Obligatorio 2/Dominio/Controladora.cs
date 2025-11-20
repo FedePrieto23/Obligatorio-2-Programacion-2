@@ -10,6 +10,10 @@ namespace Obligatorio_2.Dominio
         private static List<Cliente> aListaClientes = new List<Cliente>();
         private static List<Accesorios> aListaAccesiorios = new List<Accesorios>();
 
+        public Controladora()
+        {
+            Persistencia = new PControladora();
+        }
 
         #region " Clientes "
 
