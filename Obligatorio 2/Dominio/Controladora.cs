@@ -159,13 +159,5 @@ namespace Obligatorio_2.Dominio
             return false;
         }
         #endregion
-
-        #region "Cargar Listas" 
-        public void CargarListas()
-        {
-            this.ListarClientes();
-            this.ListarVehiculos();
-        }
-        #endregion
     }
 }
