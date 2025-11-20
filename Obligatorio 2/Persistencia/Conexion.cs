@@ -1,4 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using System.Data.SqlClient;
 using System.Data;
 
 namespace Obligatorio_2.Persistencia
