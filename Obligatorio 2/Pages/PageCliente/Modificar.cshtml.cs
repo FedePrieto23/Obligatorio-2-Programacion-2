@@ -1,6 +1,6 @@
+using Obligatorio_2.Dominio;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Obligatorio_2.Dominio;
 
 namespace Obligatorio_2.Pages.PageCliente
 {
@@ -25,10 +25,6 @@ namespace Obligatorio_2.Pages.PageCliente
                 {
                     throw new Exception("El ID debe ser numérico");
                 }
-                if (Request.Form["cedula"] == string.Empty)
-                {
-                    throw new Exception("Debe ingresar la Cedula");
-                }
                 if (Request.Form["nombre"] == string.Empty)
                 {
                     throw new Exception("Debe ingresar el Nombre");
@@ -36,6 +32,10 @@ namespace Obligatorio_2.Pages.PageCliente
                 if (Request.Form["apellido"] == string.Empty)
                 {
                     throw new Exception("Debe ingresar el Apellido");
+                }
+                if (Request.Form["cedula"] == string.Empty)
+                {
+                    throw new Exception("Debe ingresar la Cedula");
                 }
                 if (Request.Form["fechanac"] == string.Empty)
                 {
@@ -79,7 +79,7 @@ namespace Obligatorio_2.Pages.PageCliente
                 DateTime FechaVencLibreta = DateTime.Parse(Request.Form["fechavenclibreta"]);
 
                 Controladora unaControladora = new Controladora();
-                if( unaControladora.ModificarCliente(Id, Apellido, Cedula, FechaNac, Telefono, Celular, Email, Direccion, NumLibreta, FechaVencLibreta)
+                if (unaControladora.ModificarCliente(Id, Nombre, Apellido, Cedula, FechaNac, Telefono, Celular, Email, Direccion, NumLibreta, FechaVencLibreta))
                 {
                     return Redirect("/PageCliente/Lista");
                 }

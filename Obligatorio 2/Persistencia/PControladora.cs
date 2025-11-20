@@ -4,26 +4,26 @@ namespace Obligatorio_2.Persistencia
 {
     public class PControladora
     {
-        #region " Alquiler "
-        public List<Alquiler> ListaAlquiler()
+        #region " Cliente "
+        public List<Cliente> ListaCliente()
         {
-            return new PAlquiler().ListaAlquiler();
+            return new PCliente().ListaCliente();
         }
-        public bool AltaAlquiler(Alquiler mAlquiler)
+        public bool AltaCliente(Cliente mCliente)
         {
-            return new PAlquiler().Alta(mAlquiler);
+            return new PCliente().Alta(mCliente);
         }
-        public bool BajaAlquiler(int pId)
+        public bool BajaCliente(int pId)
         {
-            return new PAlquiler().Baja(pId);
+            return new PCliente().Baja(pId);
         }
-        public bool ModificarAlquiler(Alquiler mAlquiler)
+        public bool ModificarCliente(Cliente mCliente)
         {
-            return new PAlquiler().Modificar(mAlquiler);
+            return new PCliente().Modificar(mCliente);
         }
-        public int ProximoAlquilerId()
+        public int ProximoClienteId()
         {
-            return new PAlquiler().ProximoId();
+            return new PCliente().ProximoId();
         }
         #endregion
 
