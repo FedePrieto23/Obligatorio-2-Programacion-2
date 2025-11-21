@@ -6,7 +6,7 @@ namespace Obligatorio_2.Persistencia
 {
     public class Conexion
     {
-        private static string source = "DESKTOP-2GR15MM\\SQLEXPRESS";
+        private static string source = "localhost\\SQLEXPRESS";
         private static string baseDeDatos = "Obligatorio2";
         private string CadenaConexion = "data source=" + source + "; " +
             "initial Catalog=" + baseDeDatos + "; Integrated Security=SSPI; Encrypt=false";
