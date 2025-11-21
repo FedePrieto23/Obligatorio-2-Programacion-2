@@ -11,31 +11,48 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-page="/Index">Obligatorio 2</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+
+                <button class="navbar-toggler" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+                        aria-controls="mainNavbar" aria-expanded="false"
+                        aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/PageCliente/Lista">ABM Clientes</a>
+
+                <div class="collapse navbar-collapse" id="mainNavbar">
+                    <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+                        <li class="nav-item me-2">
+                            <a class="btn btn-outline-light" asp-area="" asp-page="/PageCliente/Lista">
+                                ABM Clientes
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/PageVehiculo/Lista">ABM Vehiculo</a>
+                        <li class="nav-item me-2">
+                            <a class="btn btn-outline-light" asp-area="" asp-page="/PageVehiculo/Lista">
+                                ABM Vehículos
+                            </a>
+                        <li class="nav-item me-2">
+                            <a class="btn btn-outline-light" asp-area="" asp-page="/PageAlquiler/Lista">
+                                ABM Alquileres
+                            </a>
+                        <li class="nav-item me-2">
+                            <a class="btn btn-outline-light" asp-area="" asp-page="/PageAccesorios/Lista">
+                                ABM Accesorios
+                            </a>
                         </li>
                         <li class="nav-item dropdown">
-                            <button class="btn nav-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                Reportes
-                            </button>
+                            <button class="btn nav-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Reportes</button>
                             <ul class="dropdown-menu nav-btn">
-                                <li>
-                                    <a class="dropdown-item" asp-area="" asp-page="/PageCliente/Lista">Clientes</a>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-page="/PageReportes/VentasXCliente">Venta por Cliente</a>
                                 </li>
-                                <li>
-                                    <a class="dropdown-item" asp-area="" asp-page="/PageVehiculo/Lista">Vehículos</a>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-page="/PageReportes/VentasXArticulo">Articulos Vendidos</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-page="/PageReportes/VentasXFecha">Venta por Fecha</a>
                                 </li>
                             </ul>
                         </li>
@@ -44,6 +61,7 @@
             </div>
         </nav>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -63,3 +81,5 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+

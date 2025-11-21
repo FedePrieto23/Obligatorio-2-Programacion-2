@@ -1,25 +1,42 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+html, body {
+    height: 100%;
+    margin: 0;
 }
 
 body {
-    margin-bottom: 60px;
-    background-color: gainsboro;
+    display: flex;
+    flex-direction: column;
+    background-image: url('/Imagenes/fondoalquicar_1920x1080_stretched.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-color: #000000;
+}
+
+    body > .container {
+        flex: 1;
+    }
+
+.footer {
+    margin-top: auto;
 }
 
 nav {
@@ -29,7 +46,7 @@ nav {
 
 .nav-link {
     color: white !important;
-    background-color: gray !important,
+    background-color: gray !important;
 }
 
 .navbar-brand {
