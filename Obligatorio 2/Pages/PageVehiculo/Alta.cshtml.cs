@@ -93,8 +93,6 @@ namespace Obligatorio_2.Pages.PageVehiculo
                     Estado
                 );
 
-
-
                 Controladora unaControladora = new Controladora();
                 unaControladora.AltaVehiculo(unVehiculo);
                 return Redirect("/PageVehiculo/Lista");

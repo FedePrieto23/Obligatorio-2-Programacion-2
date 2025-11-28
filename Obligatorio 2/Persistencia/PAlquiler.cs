@@ -26,7 +26,7 @@ namespace Obligatorio_2.Persistencia
                     controladora.BuscarVehiculo(int.Parse(fila[4].ToString())),
                     controladora.BuscarCliente(int.Parse(fila[5].ToString())),
                     fila[6].ToString(),
-                    controladora.BuscarAccesorios(int.Parse(fila[7].ToString())),
+                    controladora.BuscarAlquilerAccesorios(int.Parse(fila[7].ToString())),
                     fila[8].ToString(),
                     fila[9].ToString(),
                     double.Parse(fila[10].ToString()),
@@ -41,7 +41,7 @@ namespace Obligatorio_2.Persistencia
             string sql = "INSERT INTO Alquiler (Id, FechaAlquiler, FechaRetiroV, FechaDevoV, Vehiculo, Cliente, ConductorAd, Accesorios, LugarRetiro, LugarDev, PrecioXDia, Estado) " +
                          "VALUES (" + unAlquiler.Id + ", '" + unAlquiler.FechaAlquiler.ToShortDateString() + "', '" + unAlquiler.FechaRetiroV.ToShortDateString() + "', '" +
                          unAlquiler.FechaDevoV.ToShortDateString() + "', " + unAlquiler.Vehiculo.Id + ", " + unAlquiler.Cliente.Id + ", '" + unAlquiler.ConductorAd + "', " +
-                         unAlquiler.Accesorios.Id + ", '" + unAlquiler.LugarRetiro + "', '" + unAlquiler.LugarDev + "', " + unAlquiler.PrecioXDia + ", '" + unAlquiler.Estado + "')";
+                         unAlquiler.AlquilerAccesorios.Id + ", '" + unAlquiler.LugarRetiro + "', '" + unAlquiler.LugarDev + "', " + unAlquiler.PrecioTotal + ", '" + unAlquiler.Estado + "')";
         
             return Conexion.Ejecutar(sql);
         }
@@ -61,10 +61,10 @@ namespace Obligatorio_2.Persistencia
                        + "Vehiculo = " + unAlquiler.Vehiculo.Id + ", "
                        + "Cliente = " + unAlquiler.Cliente.Id + ", "
                        + "ConductorAd = '" + unAlquiler.ConductorAd + "', "
-                       + "Accesorios = " + unAlquiler.Accesorios.Id + ", "
+                       + "Accesorios = " + unAlquiler.AlquilerAccesorios.Id + ", "
                        + "LugarRetiro = '" + unAlquiler.LugarRetiro + "', "
                        + "LugarDev = '" + unAlquiler.LugarDev + "', "
-                       + "PrecioXDia = " + unAlquiler.PrecioXDia + ", "
+                       + "PrecioTotal = " + unAlquiler.PrecioTotal + ", "
                        + "Estado = '" + unAlquiler.Estado + "' "
                        + "WHERE Id = " + unAlquiler.Id;
 
@@ -72,7 +72,7 @@ namespace Obligatorio_2.Persistencia
         }
         public int ProximoAlquilerId()
         {
-            string sql = "SELECT (ISNULL(MAX(Id),0)+1) FROM Alquiler";
+            string sql = "SELECT (ISNULL(MAX(id),0)+1) FROM Alquiler";
             DataSet datos = Conexion.Consulta(sql);
             DataRowCollection filas = datos.Tables[0].Rows;
             var campo = filas[0];

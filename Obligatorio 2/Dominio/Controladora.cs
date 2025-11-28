@@ -6,9 +6,10 @@ namespace Obligatorio_2.Dominio
     {
         private PControladora Persistencia;
 
-        private static List<Vehiculo> aListaVehiculos = new List<Vehiculo>();
         private static List<Cliente> aListaClientes = new List<Cliente>();
-        private static List<Accesorios> aListaAccesiorios = new List<Accesorios>();
+        private static List<Vehiculo> aListaVehiculos = new List<Vehiculo>();
+        private static List<Alquiler> aListaAlquileres = new List<Alquiler>();
+        private static List<AlquilerAccesorios> aListaAlquilerAccesorios = new List<AlquilerAccesorios>();
 
 
         #region " Clientes "
@@ -155,6 +156,81 @@ namespace Obligatorio_2.Dominio
                     return true;
                 }
 
+            }
+            return false;
+        }
+        #endregion
+
+        #region " Alquiler "
+        public List<Alquiler> ListarAlquileres()
+        {
+            aListaAlquileres = Persistencia.ListaAlquileres();
+            return aListaAlquileres;
+        }
+        public int ProximoAlquilerId()
+        {
+            return Persistencia.ProximoAlquilerId();
+        }
+        public Alquiler BuscarAlquiler(int pId)
+        {
+            foreach (Alquiler unAlquiler in aListaAlquileres)
+            {
+                if (unAlquiler.Id == pId)
+                {
+                    return unAlquiler;
+                }
+            }
+            return null;
+        }
+        public bool AltaAlquiler(Alquiler pAlquiler)
+        {
+            Alquiler unAlquiler = BuscarAlquiler(pAlquiler.Id);
+            if (unAlquiler == null)
+            {
+                if (Persistencia.AltaAlquiler(pAlquiler))
+                {
+                    aListaAlquileres.Add(pAlquiler);
+                    return true;
+                }
+            }
+            return false;
+        }
+        public bool BajaAlquiler(int pId)
+        {
+            Alquiler unAlquiler = this.BuscarAlquiler(pId);
+            if (unAlquiler != null)
+            {
+                if (Persistencia.BajaAlquiler(pId))
+                {
+                    aListaAlquileres.Remove(unAlquiler);
+                    return true;
+                }
+            }
+            return false;
+        }
+        public bool ModificarAlquiler(int pId, DateTime pFechaAlquiler, DateTime pFechaRetiroV, DateTime pFechaDevoV, Vehiculo pVehiculo, Cliente pCliente, string pConductorAd,
+            AlquilerAccesorios pAlquilerAccesorios, string pLugarRetiro, string pLugarDev, double pPrecioTotal, string pEstado)
+        {
+            Alquiler nuevoAlquiler = new Alquiler(pId, pFechaAlquiler, pFechaRetiroV, pFechaDevoV, pVehiculo, pCliente, pConductorAd,
+                pAlquilerAccesorios, pLugarRetiro, pLugarDev, pPrecioTotal, pEstado);
+            Alquiler unAlquiler = this.BuscarAlquiler(pId);
+            if (unAlquiler != null)
+            {
+                if (Persistencia.ModificarAlquiler(nuevoAlquiler))
+                {
+                    unAlquiler.FechaAlquiler = pFechaAlquiler;
+                    unAlquiler.FechaRetiroV = pFechaRetiroV;
+                    unAlquiler.FechaDevoV = pFechaDevoV;
+                    unAlquiler.Vehiculo = pVehiculo;
+                    unAlquiler.Cliente = pCliente;
+                    unAlquiler.ConductorAd = pConductorAd;
+                    unAlquiler.AlquilerAccesorios = pAlquilerAccesorios;
+                    unAlquiler.LugarRetiro = pLugarRetiro;
+                    unAlquiler.LugarDev = pLugarDev;
+                    unAlquiler.PrecioTotal = pPrecioTotal;
+                    unAlquiler.Estado = pEstado;
+                    return true;
+                }
             }
             return false;
         }
