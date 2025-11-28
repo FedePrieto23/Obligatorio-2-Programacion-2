@@ -1,106 +1,83 @@
-﻿//using Obligatorio_2.Dominio;
-//using System.Data;
+﻿using System.Data;
+using Obligatorio_2.Dominio;
 
-//namespace Obligatorio_2.Persistencia
-//{
-//    public class PAlquiler
-//    {
-//        private Conexion Conexion = new Conexion();
+namespace Obligatorio_2.Persistencia
+{
+    public class PAlquiler
+    {
+        private Conexion Conexion = new Conexion();
 
-//        public List<Alquiler> ListaAlquileres()
-//        {
-//            string sql = "SELECT * FROM Alquiler";
+        public List<Alquiler> ListaAlquileres()
+        {
+            string sql = "SELECT * FROM Alquiler";
+            DataSet datos = Conexion.Consulta(sql);
 
-//            DataSet datos = Conexion.Consulta(sql);
+            List<Alquiler> lista = new List<Alquiler>();
+            Controladora controladora = new Controladora(); 
 
-//            List<Alquiler> lista = new List<Alquiler>();
+            foreach(DataRow fila in datos.Tables[0].Rows)
+            {
+                Alquiler unAlquiler = new Alquiler(
+                
+                    int.Parse(fila[0].ToString()),
+                    DateTime.Parse(fila[1].ToString()),
+                    DateTime.Parse(fila[2].ToString()),
+                    DateTime.Parse(fila[3].ToString()),
+                    controladora.BuscarVehiculo(int.Parse(fila[4].ToString())),
+                    controladora.BuscarCliente(int.Parse(fila[5].ToString())),
+                    fila[6].ToString(),
+                    controladora.BuscarAccesorios(int.Parse(fila[7].ToString())),
+                    fila[8].ToString(),
+                    fila[9].ToString(),
+                    double.Parse(fila[10].ToString()),
+                    fila[11].ToString()
+                );
+                lista.Add(unAlquiler);
+            }
+            return lista;
+        }
+        public bool Alta(Alquiler unAlquiler)
+        {
+            string sql = "INSERT INTO Alquiler (Id, FechaAlquiler, FechaRetiroV, FechaDevoV, Vehiculo, Cliente, ConductorAd, Accesorios, LugarRetiro, LugarDev, PrecioXDia, Estado) " +
+                         "VALUES (" + unAlquiler.Id + ", '" + unAlquiler.FechaAlquiler.ToShortDateString() + "', '" + unAlquiler.FechaRetiroV.ToShortDateString() + "', '" +
+                         unAlquiler.FechaDevoV.ToShortDateString() + "', " + unAlquiler.Vehiculo.Id + ", " + unAlquiler.Cliente.Id + ", '" + unAlquiler.ConductorAd + "', " +
+                         unAlquiler.Accesorios.Id + ", '" + unAlquiler.LugarRetiro + "', '" + unAlquiler.LugarDev + "', " + unAlquiler.PrecioXDia + ", '" + unAlquiler.Estado + "')";
+        
+            return Conexion.Ejecutar(sql);
+        }
+        public bool Baja(int pId)
+        {
+            string sql = "DELETE FROM Alquiler WHERE Id = " + pId.ToString();
+            
+            return Conexion.Ejecutar(sql);
+        }
 
-//            foreach (DataRow fila in datos.Tables[0].Rows)
-//            {
-//                Vehiculo veh = new Vehiculo();
-//                veh.Id = int.Parse(fila["idvehiculo"].ToString());
+        public bool Modificar(Alquiler unAlquiler)
+        {
+            string sql = "UPDATE Alquiler "
+                       + "SET FechaAlquiler = '" + unAlquiler.FechaAlquiler.ToShortDateString() + "', "
+                       + "FechaRetiroV = '" + unAlquiler.FechaRetiroV.ToShortDateString() + "', "
+                       + "FechaDevoV = '" + unAlquiler.FechaDevoV.ToShortDateString() + "', "
+                       + "Vehiculo = " + unAlquiler.Vehiculo.Id + ", "
+                       + "Cliente = " + unAlquiler.Cliente.Id + ", "
+                       + "ConductorAd = '" + unAlquiler.ConductorAd + "', "
+                       + "Accesorios = " + unAlquiler.Accesorios.Id + ", "
+                       + "LugarRetiro = '" + unAlquiler.LugarRetiro + "', "
+                       + "LugarDev = '" + unAlquiler.LugarDev + "', "
+                       + "PrecioXDia = " + unAlquiler.PrecioXDia + ", "
+                       + "Estado = '" + unAlquiler.Estado + "' "
+                       + "WHERE Id = " + unAlquiler.Id;
 
-//                Cliente cli = new Cliente();
-//                cli.Id = int.Parse(fila["idcliente"].ToString());
-
-//                Accesorios acc = new Accesorios();
-//                acc.Id = int.Parse(fila["idaccesorios"].ToString());
-
-//                Alquiler unAlq = new Alquiler(
-//                    int.Parse(fila["id"].ToString()),
-//                    DateTime.Parse(fila["fechaalquiler"].ToString()),
-//                    DateTime.Parse(fila["fecharetirov"].ToString()),
-//                    DateTime.Parse(fila["fechadev"].ToString()),
-//                    veh,
-//                    cli,
-//                    fila["conductorad"].ToString(),
-//                    acc,
-//                    fila["lugarretiro"].ToString(),
-//                    fila["lugardev"].ToString(),
-//                    double.Parse(fila["precioxdia"].ToString()),
-//                    fila["estado"].ToString()
-//                );
-
-//                lista.Add(unAlq);
-//            }
-//            return lista;
-//        }
-
-//        public bool Alta(Alquiler unAlq)
-//        {
-//            string sql =
-//                "INSERT INTO Alquiler " +
-//                "(id, fechaalquiler, fecharetirov, fechadev, idvehiculo, idcliente, conductorad, idaccesorios, lugarretiro, lugardev, precioxdia, estado) VALUES (" +
-//                unAlq.Id + ",'" +
-//                unAlq.FechaAlquiler.ToString("yyyy-MM-dd") + "','" +
-//                unAlq.FechaRetiroV.ToString("yyyy-MM-dd") + "','" +
-//                unAlq.FechaDevoV.ToString("yyyy-MM-dd") + "'," +
-//                unAlq.Vehiculo.Id + "," +
-//                unAlq.Vehiculo.Id + "," +
-//                unAlq.Cliente.Id + ",'" +
-//                unAlq.ConductorAd + "'," +
-//                unAlq.Accesorios.Id + ",'" +
-//                unAlq.LugarRetiro + "','" +
-//                unAlq.LugarDev + "'," +
-//                unAlq.PrecioXDia.ToString().Replace(',', '.') + ",'" +
-//                unAlq.Estado + "')";
-
-//            return Conexion.Ejecutar(sql);
-//        }
-
-//        public bool Baja(int pId)
-//        {
-//            string sql = "DELETE FROM Alquiler WHERE id = " + pId.ToString();
-//            return Conexion.Ejecutar(sql);
-//        }
-
-//        public bool Modificar(Alquiler unAlq)
-//        {
-//            string sql =
-//                "UPDATE Alquiler SET " +
-//                "fechaalquiler = '" + unAlq.FechaAlquiler.ToString("yyyy-MM-dd") + "'," +
-//                "fecharetirov = '" + unAlq.FechaRetiroV.ToString("yyyy-MM-dd") + "'," +
-//                "fechadev = '" + unAlq.FechaDevoV.ToString("yyyy-MM-dd") + "'," +
-//                "idvehiculo = " + unAlq.Vehiculo.Id + "," +
-//                "idcliente = " + unAlq.Cliente.Id + "," +
-//                "conductorad = '" + unAlq.ConductorAd + "'," +
-//                "idaccesorios = " + unAlq.Accesorios.Id + "," +
-//                "lugarretiro = '" + unAlq.LugarRetiro + "'," +
-//                "lugardev = '" + unAlq.LugarDev + "'," +
-//                "precioxdia = " + unAlq.PrecioXDia.ToString().Replace(',', '.') + "," +
-//                "estado = '" + unAlq.Estado + "' " +
-//                "WHERE id = " + unAlq.Id.ToString();
-
-//            return Conexion.Ejecutar(sql);
-//        }
-
-//        public int ProximoId()
-//        {
-//            string sql = "SELECT (ISNULL(MAX(id),0)+1) FROM Alquiler";
-//            DataSet datos = Conexion.Consulta(sql);
-//            DataRowCollection filas = datos.Tables[0].Rows;
-//            int Id = int.Parse(filas[0][0].ToString());
-//            return Id;
-//        }
-//    }
-//}
+            return Conexion.Ejecutar(sql);
+        }
+        public int ProximoAlquilerId()
+        {
+            string sql = "SELECT (ISNULL(MAX(Id),0)+1) FROM Alquiler";
+            DataSet datos = Conexion.Consulta(sql);
+            DataRowCollection filas = datos.Tables[0].Rows;
+            var campo = filas[0];
+            int Id = int.Parse(campo[0].ToString());
+            return Id;
+        }
+    }
+}

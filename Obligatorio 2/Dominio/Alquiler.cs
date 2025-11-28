@@ -29,10 +29,8 @@
         public string Estado { get { return aEstado; } set { aEstado = value; } }
 
         public Alquiler(int pId, DateTime pFechaAlquiler, DateTime pFechaRetiroV, DateTime pFechaDevoV,
-                        Vehiculo pVehiculo, Cliente pCliente,
-                        string pConductorAd, Accesorios pAccesorios,
-                        string pLugarRetiro, string pLugarDev,
-                        double pPrecioXDia, string pEstado)
+                        Vehiculo pVehiculo, Cliente pCliente, string pConductorAd, Accesorios pAccesorios,
+                        string pLugarRetiro, string pLugarDev, double pPrecioXDia, string pEstado)
         {
             aId = pId;
             aFechaAlquiler = pFechaAlquiler;
@@ -47,8 +45,6 @@
             aPrecioXDia = pPrecioXDia;
             aEstado = pEstado;
         }
-
-        public Alquiler() { }
     }
 }
 
