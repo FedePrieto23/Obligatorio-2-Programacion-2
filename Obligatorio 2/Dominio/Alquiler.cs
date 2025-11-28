@@ -12,7 +12,7 @@
         private Accesorios aAccesorios;
         private string aLugarRetiro;
         private string aLugarDev;
-        private double aPrecioXDia;
+        private double aPrecioTotal;
         private string aEstado;
 
         public int Id { get { return aId; } set { aId = value; } }
@@ -25,14 +25,14 @@
         public Accesorios Accesorios { get { return aAccesorios; } set { aAccesorios = value; } }
         public string LugarRetiro { get { return aLugarRetiro; } set { aLugarRetiro = value; } }
         public string LugarDev { get { return aLugarDev; } set { aLugarDev = value; } }
-        public double PrecioXDia { get { return aPrecioXDia; } set { aPrecioXDia = value; } }
+        public double PrecioTotal { get { return aPrecioTotal; } set { aPrecioTotal = value; } }
         public string Estado { get { return aEstado; } set { aEstado = value; } }
 
         public Alquiler(int pId, DateTime pFechaAlquiler, DateTime pFechaRetiroV, DateTime pFechaDevoV,
                         Vehiculo pVehiculo, Cliente pCliente,
                         string pConductorAd, Accesorios pAccesorios,
                         string pLugarRetiro, string pLugarDev,
-                        double pPrecioXDia, string pEstado)
+                        double pPrecioTotal, string pEstado)
         {
             aId = pId;
             aFechaAlquiler = pFechaAlquiler;
@@ -44,7 +44,7 @@
             aAccesorios = pAccesorios;
             aLugarRetiro = pLugarRetiro;
             aLugarDev = pLugarDev;
-            aPrecioXDia = pPrecioXDia;
+            aPrecioTotal = pPrecioTotal;
             aEstado = pEstado;
         }
 

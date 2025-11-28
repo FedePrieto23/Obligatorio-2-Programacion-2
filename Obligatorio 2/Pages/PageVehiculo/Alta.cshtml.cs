@@ -37,6 +37,11 @@ namespace Obligatorio_2.Pages.PageVehiculo
                 {
                     throw new Exception("Debe ingresar el Año");
                 }
+
+                if (!DateTime.TryParse(Request.Form["año"], out DateTime año))
+                {
+                    throw new Exception("El formato de Año no es válido");
+                }
                 if (Request.Form["tipo"] == string.Empty)
                 {
                     throw new Exception("Debe ingresar el Tipo");
