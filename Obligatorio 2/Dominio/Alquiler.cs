@@ -29,8 +29,10 @@
         public string Estado { get { return aEstado; } set { aEstado = value; } }
 
         public Alquiler(int pId, DateTime pFechaAlquiler, DateTime pFechaRetiroV, DateTime pFechaDevoV,
-                        Vehiculo pVehiculo, Cliente pCliente, string pConductorAd, AlquilerAccesorios pAlquilerAccesorios,
-                        string pLugarRetiro, string pLugarDev, double pPrecioTotal, string pEstado)
+                        Vehiculo pVehiculo, Cliente pCliente,
+                        string pConductorAd, AlquilerAccesorios pAlquilerAccesorios,
+                        string pLugarRetiro, string pLugarDev,
+                        double pPrecioTotal, string pEstado)
         {
             aId = pId;
             aFechaAlquiler = pFechaAlquiler;
