@@ -11,6 +11,10 @@ namespace Obligatorio_2.Dominio
         private static List<Alquiler> aListaAlquileres = new List<Alquiler>();
         private static List<AlquilerAccesorios> aListaAlquilerAccesorios = new List<AlquilerAccesorios>();
 
+        public Controladora()
+        {
+            Persistencia = new PControladora();
+        }
 
         #region " Clientes "
 

@@ -1,11 +1,16 @@
 ﻿using System.Data.SqlClient;
 using System.Data;
 
+
 namespace Obligatorio_2.Persistencia
 {
     public class Conexion
     {
+<<<<<<< HEAD
+        private static string source = "localhost\\SQLEXPRESS";
+=======
         private static string source = "DESKTOP-2GR15MM\\SQLEXPRESS";
+>>>>>>> 5f055fa09ef1f4d2310d833f6ab37f75556cc9fd
         private static string baseDeDatos = "Obligatorio2";
         private string CadenaConexion = "data source=" + source + "; " +
             "initial Catalog=" + baseDeDatos + "; Integrated Security=SSPI; Encrypt=false";
