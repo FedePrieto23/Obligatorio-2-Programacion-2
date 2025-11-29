@@ -4,7 +4,7 @@ using Obligatorio_2.Dominio;
 
 namespace Obligatorio_2.Pages.PageAlquiiler
 {
-    public class AltaModel : PageModel
+    public class ModificarModel : PageModel
     {
         public string Mensaje { get; set; }
         public int id { get; set; } = 1;
@@ -101,13 +101,13 @@ namespace Obligatorio_2.Pages.PageAlquiiler
                 int idCliente = int.Parse(Request.Form["idCliente"]);
                 Cliente unCliente = unaControladora.BuscarCliente(idCliente);
 
-                int idVehiculo= int.Parse(Request.Form["idVehiculo"]);
+                int idVehiculo = int.Parse(Request.Form["idVehiculo"]);
                 Vehiculo unVehiculo = unaControladora.BuscarVehiculo(idVehiculo);
 
                 int idAccesorio = int.Parse(Request.Form["idAccesorios"]);
                 AlquilerAccesorios unAccesorio = unaControladora.BuscarAlquilerAccesorios(idAccesorio);
 
-                Alquiler unAlquiler= new Alquiler(Id, FechaAlquiler, FechaRetiroV, FechaDevov, ConductorAd, LugarRetiro, LugarDev, PrecioTotal, Estado, unCliente, unAccesorio);
+                Alquiler unAlquiler = new Alquiler(Id, FechaAlquiler, FechaRetiroV, FechaDevov, ConductorAd, LugarRetiro, LugarDev, PrecioTotal, Estado, unCliente, unAccesorio);
 
                 unaControladora.AltaCliente(unCliente);
                 return Redirect("/PageCliente/Lista");
