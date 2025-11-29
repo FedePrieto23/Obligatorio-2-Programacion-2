@@ -9,7 +9,7 @@
         private Vehiculo aVehiculo;
         private Cliente aCliente;
         private string aConductorAd;
-        private Accesorios aAccesorios;
+        private AlquilerAccesorios aAlquilerAccesorios;
         private string aLugarRetiro;
         private string aLugarDev;
         private double aPrecioTotal;
@@ -22,7 +22,7 @@
         public Vehiculo Vehiculo { get { return aVehiculo; } set { aVehiculo = value; } }
         public Cliente Cliente { get { return aCliente; } set { aCliente = value; } }
         public string ConductorAd { get { return aConductorAd; } set { aConductorAd = value; } }
-        public Accesorios Accesorios { get { return aAccesorios; } set { aAccesorios = value; } }
+        public AlquilerAccesorios AlquilerAccesorios { get { return aAlquilerAccesorios; } set { aAlquilerAccesorios = value; } }
         public string LugarRetiro { get { return aLugarRetiro; } set { aLugarRetiro = value; } }
         public string LugarDev { get { return aLugarDev; } set { aLugarDev = value; } }
         public double PrecioTotal { get { return aPrecioTotal; } set { aPrecioTotal = value; } }
@@ -30,7 +30,7 @@
 
         public Alquiler(int pId, DateTime pFechaAlquiler, DateTime pFechaRetiroV, DateTime pFechaDevoV,
                         Vehiculo pVehiculo, Cliente pCliente,
-                        string pConductorAd, Accesorios pAccesorios,
+                        string pConductorAd, AlquilerAccesorios pAlquilerAccesorios,
                         string pLugarRetiro, string pLugarDev,
                         double pPrecioTotal, string pEstado)
         {
@@ -41,14 +41,12 @@
             aVehiculo = pVehiculo;
             aCliente = pCliente;
             aConductorAd = pConductorAd;
-            aAccesorios = pAccesorios;
+            aAlquilerAccesorios = pAlquilerAccesorios;
             aLugarRetiro = pLugarRetiro;
             aLugarDev = pLugarDev;
             aPrecioTotal = pPrecioTotal;
             aEstado = pEstado;
         }
-
-        public Alquiler() { }
     }
 }
-D
+

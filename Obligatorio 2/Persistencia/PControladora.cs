@@ -51,26 +51,26 @@ namespace Obligatorio_2.Persistencia
         #endregion
 
         #region " Alquiler "
-        //public List<Alquiler> ListaAlquileres()
-        //{
-        //    return new PAlquiler().ListaAlquiler();
-        //}
-        //public bool AltaAlquiler(Alquiler mAlquiler)
-        //{
-        //    return new PAlquiler().Alta(mAlquiler);
-        //}
-        //public bool BajaAlquiler(int pId)
-        //{
-        //    return new PAlquiler().Baja(pId);
-        //}
-        //public bool ModificarAlquiler(Alquiler mAlquiler)
-        //{
-        //    return new PAlquiler().Modificar(mAlquiler);
-        //}
-        //public int ProximoAlquilerId()
-        //{
-        //    return new PAlquiler().ProximoId();
-        //}
+        public List<Alquiler> ListaAlquileres()
+        {
+            return new PAlquiler().ListaAlquileres();
+        }
+        public bool AltaAlquiler(Alquiler aAlquiler)
+        {
+            return new PAlquiler().Alta(aAlquiler);
+        }
+        public bool BajaAlquiler(int pId)
+        {
+            return new PAlquiler().Baja(pId);
+        }
+        public bool ModificarAlquiler(Alquiler aAlquiler)
+        {
+            return new PAlquiler().Modificar(aAlquiler);
+        }
+        public int ProximoAlquilerId()
+        {
+            return new PAlquiler().ProximoAlquilerId();
+        }
         #endregion
 
         #region " Accesorios "

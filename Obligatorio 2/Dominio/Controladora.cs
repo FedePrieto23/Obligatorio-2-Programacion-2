@@ -6,10 +6,10 @@ namespace Obligatorio_2.Dominio
     {
         private PControladora Persistencia;
 
-        private static List<Vehiculo> aListaVehiculos = new List<Vehiculo>();
         private static List<Cliente> aListaClientes = new List<Cliente>();
+        private static List<Vehiculo> aListaVehiculos = new List<Vehiculo>();
         private static List<Alquiler> aListaAlquileres = new List<Alquiler>();
-        private static List<Accesorios> aListaAccesiorios = new List<Accesorios>();
+        private static List<AlquilerAccesorios> aListaAlquilerAccesorios = new List<AlquilerAccesorios>();
 
         public Controladora()
         {
@@ -150,8 +150,8 @@ namespace Obligatorio_2.Dominio
                     unVehiculo.Matricula = pMatricula;
                     unVehiculo.Marca = pMarca;
                     unVehiculo.Modelo = pModelo;
-                    unVehiculo.Año= pAño;
-                    unVehiculo.Tipo= pTipo;
+                    unVehiculo.Año = pAño;
+                    unVehiculo.Tipo = pTipo;
                     unVehiculo.CapPasajeros = pCapPasajeros;
                     unVehiculo.Combustible = pCombustible;
                     unVehiculo.PrecioxDia = pPrecioxDia;
@@ -165,17 +165,27 @@ namespace Obligatorio_2.Dominio
         }
         #endregion
 
-        #region " Alquileres "
+        #region " Alquiler "
 
+        // Método con el nombre que venías usando en las otras regiones
         public int ProximoAlquilerID()
         {
             return Persistencia.ProximoAlquilerId();
         }
-        public List<Alquiler> ListarAlquilers()
+
+        // Nombre correcto en plural
+        public List<Alquiler> ListarAlquileres()
         {
             aListaAlquileres = Persistencia.ListaAlquileres();
             return aListaAlquileres;
         }
+
+        // Alias por si en algún lugar escribiste ListarAlquilers
+        public List<Alquiler> ListarAlquilers()
+        {
+            return ListarAlquileres();
+        }
+
         public Alquiler BuscarAlquiler(int pId)
         {
             foreach (Alquiler unAlquiler in aListaAlquileres)
@@ -187,10 +197,11 @@ namespace Obligatorio_2.Dominio
             }
             return null;
         }
+
         public bool AltaAlquiler(Alquiler pAlquiler)
         {
-            Alquiler ComparoAlquiler = BuscarAlquiler(pAlquiler.Id);
-            if (ComparoAlquiler == null)
+            Alquiler unAlquiler = BuscarAlquiler(pAlquiler.Id);
+            if (unAlquiler == null)
             {
                 if (Persistencia.AltaAlquiler(pAlquiler))
                 {
@@ -200,9 +211,10 @@ namespace Obligatorio_2.Dominio
             }
             return false;
         }
+
         public bool BajaAlquiler(int pId)
         {
-            Alquiler unAlquiler = BuscarAlquiler(pId);
+            Alquiler unAlquiler = this.BuscarAlquiler(pId);
             if (unAlquiler != null)
             {
                 if (Persistencia.BajaAlquiler(pId))
@@ -213,38 +225,28 @@ namespace Obligatorio_2.Dominio
             }
             return false;
         }
-        public bool ModificarAlquiler(
-    int pId,
-    DateTime pFechaAlquiler,
-    DateTime pFechaRetiroV,
-    DateTime pFechaDevoV,
-    Vehiculo pVehiculo,
-    Cliente pCliente,
-    string pConductorAd,
-    Accesorios pAccesorios,
-    string pLugarRetiro,
-    string pLugarDev,
-    double pPrecioXDia,
-    string pEstado)
+
+        public bool ModificarAlquiler(int pId,
+                                      DateTime pFechaAlquiler,
+                                      DateTime pFechaRetiroV,
+                                      DateTime pFechaDevoV,
+                                      Vehiculo pVehiculo,
+                                      Cliente pCliente,
+                                      string pConductorAd,
+                                      AlquilerAccesorios pAlquilerAccesorios,
+                                      string pLugarRetiro,
+                                      string pLugarDev,
+                                      double pPrecioTotal,
+                                      string pEstado)
         {
-            Alquiler unAlquiler = BuscarAlquiler(pId);
+            Alquiler nuevoAlquiler = new Alquiler(pId, pFechaAlquiler, pFechaRetiroV, pFechaDevoV,
+                                                  pVehiculo, pCliente, pConductorAd,
+                                                  pAlquilerAccesorios, pLugarRetiro, pLugarDev,
+                                                  pPrecioTotal, pEstado);
+
+            Alquiler unAlquiler = this.BuscarAlquiler(pId);
             if (unAlquiler != null)
             {
-                Alquiler nuevoAlquiler = new Alquiler(
-                    pId,
-                    pFechaAlquiler,
-                    pFechaRetiroV,
-                    pFechaDevoV,
-                    pVehiculo,
-                    pCliente,
-                    pConductorAd,
-                    pAccesorios,
-                    pLugarRetiro,
-                    pLugarDev,
-                    pPrecioXDia,
-                    pEstado
-                );
-
                 if (Persistencia.ModificarAlquiler(nuevoAlquiler))
                 {
                     unAlquiler.FechaAlquiler = pFechaAlquiler;
@@ -253,12 +255,11 @@ namespace Obligatorio_2.Dominio
                     unAlquiler.Vehiculo = pVehiculo;
                     unAlquiler.Cliente = pCliente;
                     unAlquiler.ConductorAd = pConductorAd;
-                    unAlquiler.Accesorios = pAccesorios;
+                    unAlquiler.AlquilerAccesorios = pAlquilerAccesorios;
                     unAlquiler.LugarRetiro = pLugarRetiro;
                     unAlquiler.LugarDev = pLugarDev;
-                    unAlquiler.PrecioXDia = pPrecioXDia;
+                    unAlquiler.PrecioTotal = pPrecioTotal;
                     unAlquiler.Estado = pEstado;
-
                     return true;
                 }
             }
@@ -266,6 +267,8 @@ namespace Obligatorio_2.Dominio
         }
 
         #endregion
+    }
+}
 
     }
 }
