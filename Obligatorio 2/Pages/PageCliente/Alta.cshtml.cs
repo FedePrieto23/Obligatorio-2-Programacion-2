@@ -92,8 +92,6 @@ namespace Obligatorio_2.Pages.PageCliente
                     NumLibreta,
                     FechaVencLibreta
                 );
-
-
                 Controladora unaControladora = new Controladora();
                 unaControladora.AltaCliente(unCliente);
                 return Redirect("/PageCliente/Lista");
