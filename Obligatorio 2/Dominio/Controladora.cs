@@ -213,10 +213,10 @@ namespace Obligatorio_2.Dominio
             return false;
         }
         public bool ModificarAlquiler(int pId, DateTime pFechaAlquiler, DateTime pFechaRetiroV, DateTime pFechaDevoV, Vehiculo pVehiculo, Cliente pCliente, string pConductorAd,
-            AlquilerAccesorios pAlquilerAccesorios, string pLugarRetiro, string pLugarDev, double pPrecioTotal, string pEstado)
+            AlquilerAccesorio pAlquilerAccesorio, string pLugarRetiro, string pLugarDev, double pPrecioTotal, string pEstado)
         {
             Alquiler nuevoAlquiler = new Alquiler(pId, pFechaAlquiler, pFechaRetiroV, pFechaDevoV, pVehiculo, pCliente, pConductorAd,
-                pAlquilerAccesorios, pLugarRetiro, pLugarDev, pPrecioTotal, pEstado);
+                pAlquilerAccesorio, pLugarRetiro, pLugarDev, pPrecioTotal, pEstado);
             Alquiler unAlquiler = this.BuscarAlquiler(pId);
             if (unAlquiler != null)
             {
@@ -228,7 +228,7 @@ namespace Obligatorio_2.Dominio
                     unAlquiler.Vehiculo = pVehiculo;
                     unAlquiler.Cliente = pCliente;
                     unAlquiler.ConductorAd = pConductorAd;
-                    unAlquiler.AlquilerAccesorios = pAlquilerAccesorios;
+                    unAlquiler.AlquilerAccesorio = pAlquilerAccesorio;
                     unAlquiler.LugarRetiro = pLugarRetiro;
                     unAlquiler.LugarDev = pLugarDev;
                     unAlquiler.PrecioTotal = pPrecioTotal;
@@ -249,9 +249,9 @@ namespace Obligatorio_2.Dominio
         }
         public int ProximoAlquilerAccesorioId()
         {
-            return Persistencia.ProximoClienteId();
+            return Persistencia.ProximoAlquilerAccesorioId();
         }
-        public Cliente BuscarAlquilerAccesorio(int pId)
+        public AlquilerAccesorio BuscarAlquilerAccesorio(int pId)
         {
             foreach (AlquilerAccesorio unAlquilerAccesorio in aListaAlquilerAccesorios)
             {
