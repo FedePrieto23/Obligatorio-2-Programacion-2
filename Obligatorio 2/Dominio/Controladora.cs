@@ -9,7 +9,7 @@ namespace Obligatorio_2.Dominio
         private static List<Cliente> aListaClientes = new List<Cliente>();
         private static List<Vehiculo> aListaVehiculos = new List<Vehiculo>();
         private static List<Alquiler> aListaAlquileres = new List<Alquiler>();
-        private static List<AlquilerAccesorios> aListaAlquilerAccesorios = new List<AlquilerAccesorios>();
+        private static List<AlquilerAccesorio> aListaAlquilerAccesorios = new List<AlquilerAccesorio>();
 
         public Controladora()
         {
@@ -18,7 +18,7 @@ namespace Obligatorio_2.Dominio
 
         #region " Clientes "
 
-        public int ProximoClienteID()
+        public int ProximoClienteId()
         {
             return Persistencia.ProximoClienteId();
         }
@@ -93,7 +93,7 @@ namespace Obligatorio_2.Dominio
 
         #region " Vehiculos "
 
-        public int ProximoVehiculoID()
+        public int ProximoVehiculoId()
         {
             return Persistencia.ProximoVehiculoId();
         }
@@ -237,6 +237,81 @@ namespace Obligatorio_2.Dominio
                 }
             }
             return false;
+        }
+        #endregion
+
+        #region " Alquiler Accesorios "
+
+        public List<AlquilerAccesorio> ListarAlquilerAccesorios()
+        {
+            aListaAlquilerAccesorios = Persistencia.ListaAlquilerAccesorios();
+            return aListaAlquilerAccesorios;
+        }
+        public int ProximoAlquilerAccesorioId()
+        {
+            return Persistencia.ProximoClienteId();
+        }
+        public Cliente BuscarAlquilerAccesorio(int pId)
+        {
+            foreach (AlquilerAccesorio unAlquilerAccesorio in aListaAlquilerAccesorios)
+            {
+                if (unAlquilerAccesorio.Id == pId)
+                {
+                    return unAlquilerAccesorio;
+                }
+            }
+            return null;
+        }
+        public bool AltaAlquilerAccesorio(AlquilerAccesorio pAlquilerAccesorio)
+        {
+            AlquilerAccesorio unAlquilerAccesorio = this.BuscarAlquilerAccesorio(pAlquilerAccesorio.Id);
+            if (unAlquilerAccesorio == null)
+            {
+                if (Persistencia.AltaAlquilerAccesorio(pAlquilerAccesorio))
+                {
+                    aListaAlquilerAccesorios.Add(pAlquilerAccesorio);
+                    return true;
+                }
+            }
+            return false;
+        }
+        public bool BajaAlquilerAccesorio(int pId)
+        {
+            AlquilerAccesorio unAlquilerAccesorio = this.BuscarAlquilerAccesorio(pId);
+            if (unAlquilerAccesorio != null)
+            {
+                if (Persistencia.BajaAlquilerAccesorio(pId))
+                {
+                    aListaAlquilerAccesorios.Remove(unAlquilerAccesorio);
+                    return true;
+                }
+            }
+            return false;
+        }
+        public bool ModificarAlquilerAccesorio(int pId, string pNombre, int pCantidad)
+        {
+            AlquilerAccesorio nuevoAlquilerAccesorio = new AlquilerAccesorio(pId, pNombre, pCantidad);
+            AlquilerAccesorio unAlquilerAccesorio = this.BuscarAlquilerAccesorio(pId);
+            if (unAlquilerAccesorio != null)
+            {
+                if (Persistencia.ModificarAlquilerAccesorio(nuevoAlquilerAccesorio))
+                {
+                    unAlquilerAccesorio.Nombre = pNombre;
+                    unAlquilerAccesorio.Cantidad = pCantidad;
+                    return true;
+                }
+            }
+            return false;
+        }
+        #endregion
+
+        #region " Cargo Listas "
+        public void CargoListas()
+        {
+            ListarClientes();
+            ListarVehiculos();
+            ListarAlquileres();
+            ListarAlquilerAccesorios();
         }
         #endregion
     }

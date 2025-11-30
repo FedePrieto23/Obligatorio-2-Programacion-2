@@ -9,7 +9,7 @@
         private Vehiculo aVehiculo;
         private Cliente aCliente;
         private string aConductorAd;
-        private AlquilerAccesorios aAlquilerAccesorios;
+        private AlquilerAccesorio aAlquilerAccesorio;
         private string aLugarRetiro;
         private string aLugarDev;
         private double aPrecioTotal;
@@ -22,14 +22,14 @@
         public Vehiculo Vehiculo { get { return aVehiculo; } set { aVehiculo = value; } }
         public Cliente Cliente { get { return aCliente; } set { aCliente = value; } }
         public string ConductorAd { get { return aConductorAd; } set { aConductorAd = value; } }
-        public AlquilerAccesorios AlquilerAccesorios { get { return aAlquilerAccesorios; } set { aAlquilerAccesorios = value; } }
+        public AlquilerAccesorio AlquilerAccesorio { get { return aAlquilerAccesorio; } set { aAlquilerAccesorio = value; } }
         public string LugarRetiro { get { return aLugarRetiro; } set { aLugarRetiro = value; } }
         public string LugarDev { get { return aLugarDev; } set { aLugarDev = value; } }
         public double PrecioTotal { get { return aPrecioTotal; } set { aPrecioTotal = value; } }
         public string Estado { get { return aEstado; } set { aEstado = value; } }
 
         public Alquiler(int pId, DateTime pFechaAlquiler, DateTime pFechaRetiroV, DateTime pFechaDevoV,
-                        Vehiculo pVehiculo, Cliente pCliente, string pConductorAd, AlquilerAccesorios pAlquilerAccesorios,
+                        Vehiculo pVehiculo, Cliente pCliente, string pConductorAd, AlquilerAccesorio pAlquilerAccesorio,
                         string pLugarRetiro, string pLugarDev, double pPrecioTotal, string pEstado)
         {
             aId = pId;
@@ -39,7 +39,7 @@
             aVehiculo = pVehiculo;
             aCliente = pCliente;
             aConductorAd = pConductorAd;
-            aAlquilerAccesorios = pAlquilerAccesorios;
+            aAlquilerAccesorio = pAlquilerAccesorio;
             aLugarRetiro = pLugarRetiro;
             aLugarDev = pLugarDev;
             aPrecioTotal = pPrecioTotal;

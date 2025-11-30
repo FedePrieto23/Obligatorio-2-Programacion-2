@@ -1,6 +1,6 @@
 ﻿namespace Obligatorio_2.Dominio
 {
-    public class AlquilerAccesorios
+    public class AlquilerAccesorio
     {
         private int aId;  
         private string aNombre;
@@ -10,7 +10,7 @@
         public string Nombre { get { return aNombre; } set { aNombre = value; } }
         public int Cantidad { get { return aCantidad; } set { aCantidad = value; } }
     
-        public AlquilerAccesorios(int pId, string pNombre, int pCantidad)
+        public AlquilerAccesorio(int pId, string pNombre, int pCantidad)
         {
             aId = pId;
             aNombre = pNombre;

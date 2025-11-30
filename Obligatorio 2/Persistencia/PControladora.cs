@@ -73,27 +73,27 @@ namespace Obligatorio_2.Persistencia
         }
         #endregion
 
-        #region " Accesorios "
-        //public List<Accesorio> ListaAccesorios()
-        //{
-        //    return new PAccesorio().ListaAccesorios();
-        //}
-        //public bool AltaAccesorio(Accesorio mAccesorio)
-        //{
-        //    return new PAccesorio().Alta(mAccesorio);
-        //}
-        //public bool BajaAccesorio(int pId)
-        //{
-        //    return new PAccesorio().Baja(pId);
-        //}
-        //public bool ModificarAccesorio(Accesorio mAccesorio)
-        //{
-        //    return new PAccesorio().Modificar(mAccesorio);
-        //}
-        //public int ProximoAccesorioId()
-        //{
-        //    return new PAccesorio().ProximoId();
-        //}
+        #region " Alquiler Accesorios "
+        public List<AlquilerAccesorio> ListaAlquilerAccesorios()
+        {
+            return new PAlquilerAccesorio().ListaAlquilerAccesorios();
+        }
+        public bool AltaAlquilerAccesorio(AlquilerAccesorio aAlquilerAccesorio)
+        {
+            return new PAlquilerAccesorio().Alta(aAlquilerAccesorio);
+        }
+        public bool BajaAlquilerAccesorio(int pId)
+        {
+            return new PAlquilerAccesorio().Baja(pId);
+        }
+        public bool ModificarAlquilerAccesorio(AlquilerAccesorio aAlquilerAccesorio)
+        {
+            return new PAlquilerAccesorio().Modificar(aAlquilerAccesorio);
+        }
+        public int ProximoAlquilerAccesorioId()
+        {
+            return new PAlquilerAccesorio().ProximoAlquilerAccesorioId();
+        }
         #endregion
     }
 }
