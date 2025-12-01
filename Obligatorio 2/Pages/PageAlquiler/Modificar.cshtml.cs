@@ -8,7 +8,7 @@ namespace Obligatorio_2.Pages.PageAlquiiler
     {
         public string Mensaje { get; set; }
         public int id { get; set; } = 1;
-        public void OnGet()
+        public void OnGet(int )
         {
             Controladora unaControladora = new Controladora();
             id = unaControladora.ProximoClienteId();
@@ -104,17 +104,21 @@ namespace Obligatorio_2.Pages.PageAlquiiler
                 int idVehiculo = int.Parse(Request.Form["idVehiculo"]);
                 Vehiculo unVehiculo = unaControladora.BuscarVehiculo(idVehiculo);
 
-                int idAccesorio = int.Parse(Request.Form["idAccesorios"]);
+                int idAlquilerAccesorio = int.Parse(Request.Form["idAccesorios"]);
                 AlquilerAccesorio unAccesorio = unaControladora.BuscarAlquilerAccesorio(idAlquilerAccesorio);
 
                 Alquiler unAlquiler = new Alquiler(Id, FechaAlquiler, FechaRetiroV, FechaDevov, ConductorAd, LugarRetiro, LugarDev, PrecioTotal, Estado, unCliente, unAccesorio);
 
-                unaControladora.AltaCliente(unCliente);
+                Controladora unaControladora = new Controladora();
+                unaControladora.ModificarAlquiler(id, FechaAlquiler, FechaRetiroV, FechaDevov, unVehiculo, unCliente, ConductorAd, 
+                unAccesorio, LugarRetiro, LugarDev, PrecioTotal, Estado);
                 return Redirect("/PageCliente/Lista");
             }
             catch (Exception Error)
             {
                 Mensaje = Error.Message;
+                int Id = int .Parse(Request.Form["id"]);
+                OnGet(Id);
             }
             return Page();
         }

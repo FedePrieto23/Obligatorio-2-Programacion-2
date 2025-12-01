@@ -104,7 +104,7 @@ namespace Obligatorio_2.Pages.PageAlquiiler
                 int idVehiculo= int.Parse(Request.Form["idVehiculo"]);
                 Vehiculo unVehiculo = unaControladora.BuscarVehiculo(idVehiculo);
 
-                int idAccesorio = int.Parse(Request.Form["idAccesorios"]);
+                int idAlquilerAccesorio = int.Parse(Request.Form["idAccesorios"]);
                 AlquilerAccesorio unAlquilerAccesorio = unaControladora.BuscarAlquilerAccesorio(idAlquilerAccesorio);
 
                 Alquiler unAlquiler= new Alquiler(Id, FechaAlquiler, FechaRetiroV, FechaDevov, ConductorAd, LugarRetiro, LugarDev, PrecioTotal, Estado, unCliente, unAlquilerAccesorio);
