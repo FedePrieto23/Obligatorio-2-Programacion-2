@@ -150,8 +150,8 @@ namespace Obligatorio_2.Dominio
                     unVehiculo.Matricula = pMatricula;
                     unVehiculo.Marca = pMarca;
                     unVehiculo.Modelo = pModelo;
-                    unVehiculo.Año= pAño;
-                    unVehiculo.Tipo= pTipo;
+                    unVehiculo.Año = pAño;
+                    unVehiculo.Tipo = pTipo;
                     unVehiculo.CapPasajeros = pCapPasajeros;
                     unVehiculo.Combustible = pCombustible;
                     unVehiculo.PrecioxDia = pPrecioxDia;
@@ -166,15 +166,26 @@ namespace Obligatorio_2.Dominio
         #endregion
 
         #region " Alquiler "
+
+        // Método con el nombre que venías usando en las otras regiones
+        public int ProximoAlquilerID()
+        {
+            return Persistencia.ProximoAlquilerId();
+        }
+
+        // Nombre correcto en plural
         public List<Alquiler> ListarAlquileres()
         {
             aListaAlquileres = Persistencia.ListaAlquileres();
             return aListaAlquileres;
         }
-        public int ProximoAlquilerId()
+
+        // Alias por si en algún lugar escribiste ListarAlquilers
+        public List<Alquiler> ListarAlquilers()
         {
-            return Persistencia.ProximoAlquilerId();
+            return ListarAlquileres();
         }
+
         public Alquiler BuscarAlquiler(int pId)
         {
             foreach (Alquiler unAlquiler in aListaAlquileres)
@@ -186,6 +197,7 @@ namespace Obligatorio_2.Dominio
             }
             return null;
         }
+
         public bool AltaAlquiler(Alquiler pAlquiler)
         {
             Alquiler unAlquiler = BuscarAlquiler(pAlquiler.Id);
@@ -199,6 +211,7 @@ namespace Obligatorio_2.Dominio
             }
             return false;
         }
+
         public bool BajaAlquiler(int pId)
         {
             Alquiler unAlquiler = this.BuscarAlquiler(pId);
@@ -238,6 +251,7 @@ namespace Obligatorio_2.Dominio
             }
             return false;
         }
+
         #endregion
 
         #region " Alquiler Accesorios "
@@ -314,5 +328,8 @@ namespace Obligatorio_2.Dominio
             ListarAlquilerAccesorios();
         }
         #endregion
+    }
+}
+
     }
 }

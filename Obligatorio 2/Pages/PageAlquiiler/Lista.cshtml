@@ -1,0 +1,69 @@
+﻿@page
+@model Obligatorio_2.Pages.PageAlquiiler.ListaModel
+@{
+}
+<div>
+    <h1 class="display-4 text-center">Lista de Alquiler</h1>
+    <div class="row">
+        <div class="col-sm-12 text-right">
+            <a class="btn btn-success" asp-page="./Alta"><i class="fa fa-plus"></i> Agregar</a>
+        </div>
+    </div>
+    <table class="table text-center">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>FechaAlquiler</td>
+                <td>FechaRetiroV</td>
+                <td>FechaDevoV</td>
+                <td>Vehiculo</td>
+                <td>Cliente</td>
+                <td>ConductorAd</td>
+                <td>AlquilerAccesorios</td>
+                <td>LugarRetiro</td>
+                <td>LugarDev</td>
+                <td>PrecioTotal</td>
+                <td>Estado</td>
+                <td>Acciones</td>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.alquiler != null && Model.alquiler.Any())
+            {
+                @foreach (var unAlqui in Model.alquiler)
+                {
+                    <tr>
+                        <td>@unAlqui.Id</td>
+                        <td>@unAlqui.FechaAlquiler.ToShortDateString()</td>
+                        <td>@unAlqui.FechaRetiroV</td>
+                        <td>@unAlqui.FechaDevoV</td>
+                        <td>@unAlqui.Vehiculo</td>
+                        <td>@unAlqui.Cliente</td>
+                        <td>@unAlqui.ConductorAd</td>
+                        <td>@unAlqui.AlquilerAccesorios</td>
+                        <td>@unAlqui.LugarRetiro</td>
+                        <td>@unAlqui.LugarDev</td>
+                        <td>@unAlqui.PrecioTotal</td>
+                        <td>@unAlqui.Estado</td>
+                        <td>
+                            <div class="mt-2">
+                                <a asp-page="./Detalle" class="btn btn-primary"
+                                   asp-route-id="@unAlqui.Id"><i class="fa fa-eye"></i></a>
+                                <a asp-page="./Baja" class="btn btn-danger"
+                                   asp-route-id="@unAlqui.Id"><i class="fa fa-trash-alt"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6" class="text-center">
+                        No hay Alquileres ingresados
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
