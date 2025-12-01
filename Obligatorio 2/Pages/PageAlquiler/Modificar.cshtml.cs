@@ -11,7 +11,7 @@ namespace Obligatorio_2.Pages.PageAlquiiler
         public void OnGet()
         {
             Controladora unaControladora = new Controladora();
-            id = unaControladora.ProximoClienteID();
+            id = unaControladora.ProximoClienteId();
         }
         public IActionResult OnPostAgregar()
         {
@@ -105,7 +105,7 @@ namespace Obligatorio_2.Pages.PageAlquiiler
                 Vehiculo unVehiculo = unaControladora.BuscarVehiculo(idVehiculo);
 
                 int idAccesorio = int.Parse(Request.Form["idAccesorios"]);
-                AlquilerAccesorios unAccesorio = unaControladora.BuscarAlquilerAccesorios(idAccesorio);
+                AlquilerAccesorio unAccesorio = unaControladora.BuscarAlquilerAccesorio(idAlquilerAccesorio);
 
                 Alquiler unAlquiler = new Alquiler(Id, FechaAlquiler, FechaRetiroV, FechaDevov, ConductorAd, LugarRetiro, LugarDev, PrecioTotal, Estado, unCliente, unAccesorio);
 

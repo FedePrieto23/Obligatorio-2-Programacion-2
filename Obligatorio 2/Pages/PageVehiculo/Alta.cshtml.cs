@@ -11,7 +11,7 @@ namespace Obligatorio_2.Pages.PageVehiculo
         public void OnGet()
         {
             Controladora unaControladora = new Controladora();
-            id = unaControladora.ProximoVehiculoID();
+            id = unaControladora.ProximoVehiculoId();
         }
         public IActionResult OnPostAgregar()
         {

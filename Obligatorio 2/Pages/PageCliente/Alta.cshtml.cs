@@ -12,7 +12,7 @@ namespace Obligatorio_2.Pages.PageCliente
         public void OnGet()
         {
             Controladora unaControladora = new Controladora();
-            id = unaControladora.ProximoClienteID();
+            id = unaControladora.ProximoClienteId();
         }
         public IActionResult OnPostAgregar()
         {
