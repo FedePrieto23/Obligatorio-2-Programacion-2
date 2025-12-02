@@ -26,7 +26,7 @@
                 </div>
                 <div class="form-group">
                     <label for="fechanac">FechaNac:</label>
-                    <input type="text" name="fechanac" id="fechanac" class="form-control" value="@Model.cliente.FechaNac" />
+                    <input type="date" name="fechanac" id="fechanac" class="form-control" value="@Model.cliente.FechaNac" />
                 </div>
                 <div class="form-group">
                     <label for="telefono">Teléfono:</label>
@@ -47,12 +47,11 @@
                 <div class="form-group">
                     <label for="numlibreta">NumLbreta:</label>
                     <input type="text" name="numlibreta" id="numlibreta" class="form-control" value="@Model.cliente.NumLibreta" />
-                    <div class="form-group">
-                        <label for="fechavenclibreta">FechaVencLibreta:</label>
-                        <input type="text" name="fechavenclibreta" id="fechavenclibreta" class="form-control" value="@Model.cliente.FechaVencLibreta" />
-                    </div>
                 </div>
-
+                <div class="form-group">
+                     <label for="fechavenclibreta">FechaVencLibreta:</label>
+                     <input type="date" name="fechavenclibreta" id="fechavenclibreta" class="form-control" value="@Model.cliente.FechaVencLibreta" />
+                </div>
             </div>
         </div>
         <hr />

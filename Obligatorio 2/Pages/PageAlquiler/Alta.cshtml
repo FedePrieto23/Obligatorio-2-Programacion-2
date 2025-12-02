@@ -1,7 +1,6 @@
 ﻿@page
-@model Obligatorio_2.Pages.PageAlquiiler.AltaModel
+@model Obligatorio_2.Pages.PageAlquiler.AltaModel
 @{
-    ViewData["Title"] = "Alta de Alquiler";
 }
 <div class="text-left">
     <h1 class="display-4 text-center">Agregar Alquiler</h1>
@@ -10,51 +9,69 @@
         <div class="row">
             <div class="col-sm-4">
                 <div class="form-group">
-                    <label for="id">Id:</label>
+                    <label for="id">ID:</label>
                     <input type="text" name="id" id="id" readonly class="form-control" asp-for="id" />
                 </div>
                 <div class="form-group">
-                    <label for="fechaalquiler">FechaAlquiler:</label>
-                    <input type="text" name="fechaalquiler" id="fechaalquiler" class="form-control" />
+                    <label for="fechaalquiler">Fecha Alquiler:</label>
+                    <input type="date" name="fechaalquiler" id="fechaalquiler" class="form-control" />
                 </div>
                 <div class="form-group">
-                    <label for="fecharetiro">FechaRetiro:</label>
-                    <input type="text" name="fecharetiro" id="fecharetiro" class="form-control" />
+                    <label for="fecharetirov">Fecha de Retiro:</label>
+                    <input type="date" name="fecharetirov" id="fecharetirov" class="form-control" />
                 </div>
                 <div class="form-group">
-                    <label for="fechadevov">FechaDevoV:</label>
-                    <input type="text" name="fechadevov" id="fechadevov" readonly class="form-control" />
+                    <label for="fechadevov">Fecha de Devolucion:</label>
+                    <input type="date" name="fechadevov" id="fechadevov" readonly class="form-control" />
                 </div>
                 <div class="form-group">
-                    <label for="vehiculo">Vehiculo:</label>
-                    <input type="text" name="vehiculo" id="vehiculo" class="form-control" />
+                    <label for="idVehiculo">Vehiculo:</label>
+                    <select id="idVehiculo" name="idVehiculo" class="form-control">
+                        <option value="">Seleccione un vehiculo</option>
+                        @foreach (var vehi in Model.vehiculos)
+                        {
+                            <option value="@vehi.Id">@vehi.Matricula</option>
+                        }
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label for="cliente">Cliente:</label>
-                    <input type="text" name="cliente" id="cliente" class="form-control" />
+                    <label for="idCliente">Cliente:</label>
+                    <select id="idCliente" name="idCliente" class="form-control">
+                        <option value="">Seleccione un cliente</option>
+                        @foreach (var cli in Model.clientes)
+                        {
+                            <option value="@cli.Id">@cli.Nombre</option>
+                        }
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label for="conductorad">ConductorAd:</label>
+                    <label for="conductorad">Conductor Adicional:</label>
                     <input type="text" name="conductorad" id="conductorad" class="form-control" />
                 </div>
                 <div class="form-group">
-                    <label for="accesorios">Accesorios:</label>
-                    <input type="text" name="accesorios" id="accesorios" class="form-control" />
+                    <label for="idAlquileraccesorio">Accesorios:</label>
+                    <select id="idAlquileraccesorio" name="idAlquileraccesorio" class="form-control">
+                        <option value="">Seleccione un cliente</option>
+                        @foreach (var Alqacc in Model.alquileraccesorio)
+                        {
+                            <option value="@Alqacc.Id">@Alqacc.Nombre</option>
+                        }
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label for="lugarretiro">LugarRetiro:</label>
+                    <label for="lugarretiro">Lugar de Retiro:</label>
                     <input type="text" name="lugarretiro" id="lugarretiro" class="form-control" />
                 </div>
                 <div class="form-group">
-                    <label for="lugardev">LugarDev:</label>
+                    <label for="lugardev">Lugar de Devolucion:</label>
                     <input type="text" name="lugardev" id="lugardev" class="form-control" />
                 </div>
                 <div class="form-group">
-                    <label for="precioxdia;">PrecioXDia;:</label>
-                    <input type="text" name="precioxdia" id="precioxdia" class="form-control" />
+                    <label for="preciototal;">Precio Total:</label>
+                    <input type="number" name="preciototal" id="preciototal" class="form-control" />
                 </div>
                 <div class="form-group">
-                    <label for="estado;">Estado;:</label>
+                    <label for="estado;">Estado:</label>
                     <input type="text" name="estado" id="estado" class="form-control" />
                 </div>
             </div>
@@ -78,3 +95,4 @@
         </div>
     }
 </div>
+

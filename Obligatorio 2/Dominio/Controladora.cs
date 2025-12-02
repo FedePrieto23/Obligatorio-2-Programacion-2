@@ -168,7 +168,7 @@ namespace Obligatorio_2.Dominio
         #region " Alquiler "
 
         // Método con el nombre que venías usando en las otras regiones
-        public int ProximoAlquilerID()
+        public int ProximoAlquilerId()
         {
             return Persistencia.ProximoAlquilerId();
         }
@@ -331,5 +331,3 @@ namespace Obligatorio_2.Dominio
     }
 }
 
-    }
-}

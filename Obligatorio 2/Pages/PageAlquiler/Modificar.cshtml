@@ -12,51 +12,78 @@
             <div class="col-sm-4">
                 <div class="form-group">
                     <label for="id">Id:</label>
-                    <input type="text" name="id" id="id" readonly class="form-control" asp-for="id" />
+                    <input type="text" name="id" id="id" readonly class="form-control" 
+                        readoonly value="@Model.alquiler.Id"/>
                 </div>
                 <div class="form-group">
-                    <label for="fechaalquiler">FechaAlquiler:</label>
-                    <input type="text" name="fechaalquiler" id="fechaalquiler" class="form-control" />
+                    <label for="fechaalquiler">Fecha Alquiler:</label>
+                    <input type="date" name="fechaalquiler" id="fechaalquiler" class="form-control" 
+                        value="@Model.alquiler.FechaAlquiler"/>
                 </div>
                 <div class="form-group">
-                    <label for="fecharetiro">FechaRetiro:</label>
-                    <input type="text" name="fecharetiro" id="fecharetiro" class="form-control" />
+                    <label for="fecharetirov">Fecha Retiro:</label>
+                    <input type="text" name="fecharetirov" id="fecharetirov" class="form-control" 
+                        value="@Model.alquiler.FechaRetiroV"/>
                 </div>
                 <div class="form-group">
-                    <label for="fechadevov">FechaDevoV:</label>
-                    <input type="text" name="fechadevov" id="fechadevov" readonly class="form-control" />
+                    <label for="fechadevov">Fecha Devolucion:</label>
+                    <input type="text" name="fechadevov" id="fechadevov" readonly class="form-control" 
+                        value="@Model.alquiler.FechaDevoV"/>
                 </div>
                 <div class="form-group">
                     <label for="vehiculo">Vehiculo:</label>
-                    <input type="text" name="vehiculo" id="vehiculo" class="form-control" />
+                    <select id="idVehiculo" name="idVehiculo" class="form-control">
+                        <option value="">Seleccione un vehiculo</option>
+                        @foreach (var vehi in Model.vehiculos)
+                        {
+                            <option value="@vehi.Id">@vehi.Matricula</option>
+                        }
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="cliente">Cliente:</label>
-                    <input type="text" name="cliente" id="cliente" class="form-control" />
+                    <select id="idCliente" name="idCliente" class="form-control">
+                        <option value="">Seleccione un cliente</option>
+                        @foreach (var cli in Model.clientes)
+                        {
+                            <option value="@cli.Id">@cli.Nombre</option>
+                        }
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="conductorad">ConductorAd:</label>
-                    <input type="text" name="conductorad" id="conductorad" class="form-control" />
+                    <input type="text" name="conductorad" id="conductorad" class="form-control" 
+                        value="@Model.alquiler.ConductorAd"/>
                 </div>
                 <div class="form-group">
                     <label for="alquileraccesorio">Accesorios:</label>
-                    <input type="text" name="alquileraccesorio" id="alquileraccesorio" class="form-control" />
+                    <select id="idAlquileraccesorio" name="idAlquileraccesorio" class="form-control">
+                        <option value="">Seleccione un Accesorio</option>
+                        @foreach (var Alqacc in Model.alquileraccesorio)
+                        {
+                            <option value="@Alqacc.Id">@Alqacc.Nombre</option>
+                        }
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="lugarretiro">LugarRetiro:</label>
-                    <input type="text" name="lugarretiro" id="lugarretiro" class="form-control" />
+                    <input type="text" name="lugarretiro" id="lugarretiro" class="form-control" 
+                        value="@Model.alquiler.LugarRetiro"/>
                 </div>
                 <div class="form-group">
                     <label for="lugardev">LugarDev:</label>
-                    <input type="text" name="lugardev" id="lugardev" class="form-control" />
+                    <input type="text" name="lugardev" id="lugardev" class="form-control"
+                        value="@Model.alquiler.LugarDev" />
                 </div>
                 <div class="form-group">
-                    <label for="precioxdia;">PrecioXDia;:</label>
-                    <input type="text" name="precioxdia" id="precioxdia" class="form-control" />
+                    <label for="preciototal;">Precio Total;:</label>
+                    <input type="text" name="preciototal" id="preciototal" class="form-control" 
+                        value="@Model.alquiler.PrecioTotal"/>
                 </div>
                 <div class="form-group">
                     <label for="estado;">Estado;:</label>
-                    <input type="text" name="estado" id="estado" class="form-control" />
+                    <input type="text" name="estado" id="estado" class="form-control" 
+                        value="@Model.alquiler.Estado"/>
                 </div>
             </div>
         </div>

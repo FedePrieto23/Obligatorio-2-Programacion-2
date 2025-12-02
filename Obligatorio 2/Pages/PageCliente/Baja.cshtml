@@ -34,7 +34,7 @@
             @Html.DisplayNameFor(model => model.cliente.FechaNac)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.cliente.FechaNac)
+            @Model.cliente.FechaNac.ToShortDateString()
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.cliente.Telefono)
@@ -70,7 +70,7 @@
             @Html.DisplayNameFor(model => model.cliente.FechaVencLibreta)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.cliente.FechaVencLibreta)
+            @Model.cliente.FechaVencLibreta.ToShortDateString()
         </dd>
 
     </dl>
