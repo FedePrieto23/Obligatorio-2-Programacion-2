@@ -1,0 +1,41 @@
+﻿@page
+@model Obligatorio_2.Pages.PageAlquilerAccesorio.BajaModel
+@{
+}
+<div class="text-left">
+    <h1 class="display-4 text-center">Eliminar Accesorio</h1>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.alquileraccesorio.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.alquileraccesorio.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.alquileraccesorio.Nombre)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.alquileraccesorio.Nombre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.alquileraccesorio.Cantidad)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.alquileraccesorio.Cantidad)
+        </dd>
+    </dl>
+    <hr />
+    <form method="post">
+        <input type="hidden" name="id" value="@Model.alquileraccesorio.Id" />
+        <div class="row">
+            <div class="col-sm-4">
+                <button type="submit" class="btn btn-danger"
+                        asp-page-handler="Eliminar">
+                    Eliminar
+                </button>
+                <a class="btn btn-warning" asp-page="./Lista">Volver</a>
+            </div>
+        </div>
+    </form>
+</div>

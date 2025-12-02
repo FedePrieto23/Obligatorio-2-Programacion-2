@@ -40,8 +40,8 @@ namespace Obligatorio_2.Persistencia
         {
             string sql = "INSERT INTO Alquiler (Id, FechaAlquiler, FechaRetiroV, FechaDevoV, Vehiculo, Cliente, ConductorAd, Accesorios, LugarRetiro, LugarDev, PrecioXDia, Estado) " +
                          "VALUES (" + unAlquiler.Id + ", '" + unAlquiler.FechaAlquiler.ToShortDateString() + "', '" + unAlquiler.FechaRetiroV.ToShortDateString() + "', '" +
-                         unAlquiler.FechaDevoV.ToShortDateString() + "', " + unAlquiler.Vehiculo.Id + ", " + unAlquiler.Cliente.Id + ", '" + unAlquiler.ConductorAd + "', " +
-                         unAlquiler.AlquilerAccesorio.Id + ", '" + unAlquiler.LugarRetiro + "', '" + unAlquiler.LugarDev + "', " + unAlquiler.PrecioTotal + ", '" + unAlquiler.Estado + "')";
+                         unAlquiler.FechaDevoV.ToShortDateString() + "', " + unAlquiler.Vehiculo.Matricula + ", " + unAlquiler.Cliente.Nombre + ", '" + unAlquiler.ConductorAd + "', " +
+                         unAlquiler.AlquilerAccesorio.Nombre + ", '" + unAlquiler.LugarRetiro + "', '" + unAlquiler.LugarDev + "', " + unAlquiler.PrecioTotal + ", '" + unAlquiler.Estado + "')";
         
             return Conexion.Ejecutar(sql);
         }
@@ -58,10 +58,10 @@ namespace Obligatorio_2.Persistencia
                        + "SET FechaAlquiler = '" + unAlquiler.FechaAlquiler.ToShortDateString() + "', "
                        + "FechaRetiroV = '" + unAlquiler.FechaRetiroV.ToShortDateString() + "', "
                        + "FechaDevoV = '" + unAlquiler.FechaDevoV.ToShortDateString() + "', "
-                       + "Vehiculo = " + unAlquiler.Vehiculo.Id + ", "
-                       + "Cliente = " + unAlquiler.Cliente.Id + ", "
+                       + "Vehiculo = " + unAlquiler.Vehiculo.Matricula + ", "
+                       + "Cliente = " + unAlquiler.Cliente.Nombre + ", "
                        + "ConductorAd = '" + unAlquiler.ConductorAd + "', "
-                       + "Accesorios = " + unAlquiler.AlquilerAccesorio.Id + ", "
+                       + "Accesorios = " + unAlquiler.AlquilerAccesorio.Nombre + ", "
                        + "LugarRetiro = '" + unAlquiler.LugarRetiro + "', "
                        + "LugarDev = '" + unAlquiler.LugarDev + "', "
                        + "PrecioTotal = " + unAlquiler.PrecioTotal + ", "

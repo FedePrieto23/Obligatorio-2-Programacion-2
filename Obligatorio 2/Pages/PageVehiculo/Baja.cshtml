@@ -34,7 +34,7 @@ div class="text-left">
         @Html.DisplayNameFor(model => model.vehiculo.Año)
     </dt>
     <dd class="col-sm-10">
-        @Html.DisplayFor(model => model.vehiculo.Año)
+        @Model.vehiculo.Año.ToShortDateString()
     </dd>
     <dt class="col-sm-2">
         @Html.DisplayNameFor(model => model.vehiculo.CapPasajeros)

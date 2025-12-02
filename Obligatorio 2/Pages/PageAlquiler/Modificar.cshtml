@@ -22,12 +22,12 @@
                 </div>
                 <div class="form-group">
                     <label for="fecharetirov">Fecha Retiro:</label>
-                    <input type="text" name="fecharetirov" id="fecharetirov" class="form-control" 
+                    <input type="date" name="fecharetirov" id="fecharetirov" class="form-control" 
                         value="@Model.alquiler.FechaRetiroV"/>
                 </div>
                 <div class="form-group">
                     <label for="fechadevov">Fecha Devolucion:</label>
-                    <input type="text" name="fechadevov" id="fechadevov" readonly class="form-control" 
+                    <input type="date" name="fechadevov" id="fechadevov" readonly class="form-control" 
                         value="@Model.alquiler.FechaDevoV"/>
                 </div>
                 <div class="form-group">
@@ -51,7 +51,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="conductorad">ConductorAd:</label>
+                    <label for="conductorad">Conductor Adicional:</label>
                     <input type="text" name="conductorad" id="conductorad" class="form-control" 
                         value="@Model.alquiler.ConductorAd"/>
                 </div>
@@ -66,22 +66,22 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="lugarretiro">LugarRetiro:</label>
+                    <label for="lugarretiro">Lugar de Retiro:</label>
                     <input type="text" name="lugarretiro" id="lugarretiro" class="form-control" 
                         value="@Model.alquiler.LugarRetiro"/>
                 </div>
                 <div class="form-group">
-                    <label for="lugardev">LugarDev:</label>
+                    <label for="lugardev">Lugar de Devolucion:</label>
                     <input type="text" name="lugardev" id="lugardev" class="form-control"
                         value="@Model.alquiler.LugarDev" />
                 </div>
                 <div class="form-group">
                     <label for="preciototal;">Precio Total;:</label>
-                    <input type="text" name="preciototal" id="preciototal" class="form-control" 
+                    <input type="number" name="preciototal" id="preciototal" class="form-control" 
                         value="@Model.alquiler.PrecioTotal"/>
                 </div>
                 <div class="form-group">
-                    <label for="estado;">Estado;:</label>
+                    <label for="estado;">Estado:</label>
                     <input type="text" name="estado" id="estado" class="form-control" 
                         value="@Model.alquiler.Estado"/>
                 </div>

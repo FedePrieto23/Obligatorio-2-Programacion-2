@@ -15,6 +15,8 @@ namespace Obligatorio_2.Persistencia
 
             List<Vehiculo> lista = new List<Vehiculo>();
 
+            Controladora unaControladora = new Controladora();
+
             foreach (DataRow fila in datos.Tables[0].Rows)
             {
                 Vehiculo unVehiculo = new Vehiculo(
@@ -37,18 +39,19 @@ namespace Obligatorio_2.Persistencia
 
         public bool Alta(Vehiculo unVehiculo)
         {
+            string precioxdia = unVehiculo.PrecioxDia.ToString().Replace(",", ".");
             string sql = "INSERT INTO vehiculo " +
                          "(id, matricula, marca, modelo, año, tipo, cappasajeros, combustible, color, precioxdia, estado) " +
                          "VALUES (" + unVehiculo.Id + ",'"
                                     + unVehiculo.Matricula + "','"
                                     + unVehiculo.Marca + "','"
                                     + unVehiculo.Modelo + "','"
-                                    + unVehiculo.Año.ToString("yyyy-MM-dd") + "','"
+                                    + unVehiculo.Año.ToShortDateString() + "','"
                                     + unVehiculo.Tipo + "',"
                                     + unVehiculo.CapPasajeros + ",'"
                                     + unVehiculo.Combustible + "','"
                                     + unVehiculo.Color + "',"
-                                    + unVehiculo.PrecioxDia.ToString().Replace(',', '.') + ",'"
+                                    + precioxdia + ",'"
                                     + unVehiculo.Estado + "')";
 
             return Conexion.Ejecutar(sql);
@@ -62,16 +65,17 @@ namespace Obligatorio_2.Persistencia
 
         public bool Modificar(Vehiculo unVehiculo)
         {
+            string precioxdia = unVehiculo.PrecioxDia.ToString().Replace(",", ".");
             string sql = "UPDATE vehiculo " +
                          "SET matricula = '" + unVehiculo.Matricula + "'," +
                          "marca = '" + unVehiculo.Marca + "'," +
                          "modelo = '" + unVehiculo.Modelo + "'," +
-                         "año = '" + unVehiculo.Año.ToString("yyyy-MM-dd") + "'," +
+                         "año = '" + unVehiculo.Año.ToShortDateString() + "'," +
                          "tipo = '" + unVehiculo.Tipo + "'," +
                          "cappasajeros = " + unVehiculo.CapPasajeros + "," +
                          "combustible = '" + unVehiculo.Combustible + "'," +
                          "color = '" + unVehiculo.Color + "'," +
-                         "precioxdia = " + unVehiculo.PrecioxDia.ToString().Replace(',', '.') + "," +
+                         "precioxdia = " + precioxdia + "," +
                          "estado = '" + unVehiculo.Estado + "' " +
                          "WHERE id = " + unVehiculo.Id.ToString();
 

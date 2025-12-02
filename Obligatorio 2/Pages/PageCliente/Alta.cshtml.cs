@@ -79,19 +79,9 @@ namespace Obligatorio_2.Pages.PageCliente
                 string NumLibreta = Request.Form["numlibreta"];
                 DateTime FechaVencLibreta = DateTime.Parse(Request.Form["fechavenclibreta"]);
 
-                Cliente unCliente = new Cliente(
-                    Id,
-                    Nombre,
-                    Apellido,
-                    Cedula,
-                    FechaNac,
-                    Telefono,
-                    Celular,
-                    Email,
-                    Direccion,
-                    NumLibreta,
-                    FechaVencLibreta
-                );
+                Cliente unCliente = new Cliente(Id, Nombre, Apellido, Cedula, FechaNac, Telefono, Celular,
+                    Email, Direccion, NumLibreta, FechaVencLibreta );
+
                 Controladora unaControladora = new Controladora();
                 unaControladora.AltaCliente(unCliente);
                 return Redirect("/PageCliente/Lista");

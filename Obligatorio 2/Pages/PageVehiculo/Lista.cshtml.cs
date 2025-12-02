@@ -8,10 +8,11 @@ namespace Obligatorio_2.Pages.PageVehiculo
     public class ListaModel : PageModel
     {
         public List<Vehiculo> Vehiculos { get; set; }
-        Controladora unaControladora = new Controladora();
+        
         public void OnGet()
         {
-           Vehiculos = unaControladora.ListarVehiculos();
+            Controladora unaControladora = new Controladora();
+            Vehiculos = unaControladora.ListarVehiculos();
         }
     }
 }

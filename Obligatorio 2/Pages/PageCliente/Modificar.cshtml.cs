@@ -79,15 +79,16 @@ namespace Obligatorio_2.Pages.PageCliente
                 DateTime FechaVencLibreta = DateTime.Parse(Request.Form["fechavenclibreta"]);
 
                 Controladora unaControladora = new Controladora();
-                if (unaControladora.ModificarCliente(Id, Nombre, Apellido, Cedula, FechaNac, Telefono, Celular, Email, Direccion, NumLibreta, FechaVencLibreta))
-                {
-                    return Redirect("/PageCliente/Lista");
-                }
-                throw new Exception("Ocurrió un error al modificar");
+                unaControladora.ModificarCliente(Id, Nombre, Apellido, Cedula, FechaNac, Telefono, Celular,
+                Email, Direccion, NumLibreta, FechaVencLibreta);
+                
+                return Redirect("/PageCliente/Lista");  
             }
             catch (Exception Error)
             {
                 Mensaje = Error.Message;
+                int id = int.Parse(Request.Form["id"]);
+                OnGet(id);
             }
             return Page();
         }

@@ -1,0 +1,43 @@
+﻿@page
+@model Obligatorio_2.Pages.PageAlquilerAccesorio.ModificarModel
+@{
+}
+<div class="text-left">
+    <h1 class="display-4 text-center">Modificar Cliente</h1>
+    <hr />
+    <form method="post">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="id">ID:</label>
+                    <input type="text" name="id" id="id" class="form-control" readonly value="@Model.alquileraccesorio.Id" />
+                </div>
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" name="nombre" id="nombre" class="form-control" value="@Model.alquileraccesorio.Nombre" />
+                </div>
+                <div class="form-group">
+                    <label for="cantidad">Cantidad:</label>
+                    <input type="number" name="cantidad" id="cantidad" class="form-control" value="@Model.alquileraccesorio.Cantidad" />
+                </div>
+            </div>
+        </div>
+        <hr />
+        <button type="submit" class="btn btn-primary"
+                asp-page-handler="Modificar">
+            Modificar
+        </button>
+        <a class="btn btn-warning" asp-page="./Lista">Volver</a>
+    </form>
+    @if (!string.IsNullOrEmpty(Model.Mensaje))
+    {
+        <div class="row">
+            <div class="col-sm-4">
+                <br />
+                <div class="alert alert-warning" role="alert">
+                    @Model.Mensaje
+                </div>
+            </div>
+        </div>
+    }
+</div>

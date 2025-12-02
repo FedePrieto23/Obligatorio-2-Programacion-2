@@ -37,11 +37,10 @@ namespace Obligatorio_2.Pages.PageVehiculo
                 {
                     throw new Exception("Debe ingresar el Año");
                 }
-
-                if (!DateTime.TryParse(Request.Form["año"], out DateTime año))
-                {
-                    throw new Exception("El formato de Año no es válido");
-                }
+                //if (!DateTime.TryParse(Request.Form["año"], out DateTime año))
+                //{
+                //    throw new Exception("El formato de Año no es válido");
+                //}
                 if (Request.Form["tipo"] == string.Empty)
                 {
                     throw new Exception("Debe ingresar el Tipo");
@@ -49,6 +48,10 @@ namespace Obligatorio_2.Pages.PageVehiculo
                 if (Request.Form["cappasajeros"] == string.Empty)
                 {
                     throw new Exception("Debe ingresar la Capacidad de Pasajeros");
+                }
+                if (double.TryParse(Request.Form["cappasajeros"], out _))
+                {
+                    throw new Exception("La cantidad debe ser numérico");
                 }
                 if (Request.Form["combustible"] == string.Empty)
                 {
@@ -64,13 +67,12 @@ namespace Obligatorio_2.Pages.PageVehiculo
                 }
                 if (double.TryParse(Request.Form["precioxdia"] ,out _))
                 {
-                    throw new Exception("Debe ingresar el Precio por dia");
+                    throw new Exception("El precio debe ser numérico");
                 }
                 if (Request.Form["estado"] == string.Empty)
                 {
                     throw new Exception("Debe ingresar el Estado del vehiculo");
                 }
-
 
                 int Id = int.Parse(Request.Form["id"]);
                 string Matricula = Request.Form["matricula"];
@@ -81,26 +83,18 @@ namespace Obligatorio_2.Pages.PageVehiculo
                 int CapPasajeros = int.Parse(Request.Form["cappasajeros"]);
                 string Combustible = Request.Form["combustible"];
                 string Color = Request.Form["color"];
-                double PrecioxDia = double.Parse(Request.Form["PrecioxDia"]);
+                double PrecioxDia = double.Parse(Request.Form["precioxdia"]);
                 string Estado = Request.Form["estado"];
 
-                Vehiculo unVehiculo= new Vehiculo(
-                    Id,
-                    Matricula,
-                    Marca,
-                    Modelo,
-                    Año,
-                    Tipo,
-                    CapPasajeros,
-                    Combustible,
-                    Color,
-                    PrecioxDia,
-                    Estado
-                );
+                Vehiculo unVehiculo= new Vehiculo(Id, Matricula, Marca, Modelo, Año, Tipo, CapPasajeros,
+                         Combustible, Color, PrecioxDia, Estado);
 
                 Controladora unaControladora = new Controladora();
-                unaControladora.AltaVehiculo(unVehiculo);
-                return Redirect("/PageVehiculo/Lista");
+                if (unaControladora.AltaVehiculo(unVehiculo))
+                {
+                    return Redirect("/PageVehiculo/Lista");
+                }
+                throw new Exception("Ocurrió un error al agregar");
             }
             catch (Exception Error)
             {

@@ -45,6 +45,10 @@ namespace Obligatorio_2.Pages.PageVehiculo
                 {
                     throw new Exception("Debe ingresar la Capacidad de Pasajeros");
                 }
+                if (int.TryParse(Request.Form["cappasajeros"], out _))
+                {
+                    throw new Exception("La capacidad debe ser numerico");
+                }
                 if (Request.Form["combustible"] == string.Empty)
                 {
                     throw new Exception("Debe ingresar el Combustible");
@@ -59,7 +63,7 @@ namespace Obligatorio_2.Pages.PageVehiculo
                 }
                 if (double.TryParse(Request.Form["precioxdia"], out _))
                 {
-                    throw new Exception("Debe ingresar el Precio por dia");
+                    throw new Exception("El precio por dia debe ser numerico");
                 }
                 if (Request.Form["estado"] == string.Empty)
                 {
@@ -78,17 +82,18 @@ namespace Obligatorio_2.Pages.PageVehiculo
                 string Color = Request.Form["color"];
                 double PrecioxDia = double.Parse(Request.Form["PrecioxDia"]);
                 string Estado = Request.Form["estado"];
-                Controladora unaControladora = new Controladora();
-                unaControladora.ModificarVehiculo(Id, Matricula, Marca, Modelo, Año, Tipo, CapPasajeros,Combustible,
-                    Color, PrecioxDia, Estado);
 
-                return Redirect("/PageVehiculo/Lista");
+                Controladora unaControladora = new Controladora();
+                if (unaControladora.ModificarVehiculo(Id, Matricula, Marca, Modelo, Año, Tipo, CapPasajeros, Combustible,
+                    Color, PrecioxDia, Estado))
+                {
+                    return Redirect("/PageVehiculo/Lista");
+                }
+                throw new Exception("No se pudo modificar el vehiculo");
             }
             catch (Exception Error)
             {
                 Mensaje = Error.Message;
-                int Id = int.Parse(Request.Form["id"]);
-                OnGet(Id);
             }
             return Page();
         }

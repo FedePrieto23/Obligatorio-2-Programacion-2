@@ -14,14 +14,10 @@
         private double aPrecioxDia;
         private string aEstado;
 
-        public int Id { 
-        get { return aId; } set { aId = value; }
-        }
-
+        public int Id 
+            { get { return aId; } set { aId = value; } }
         public string Matricula
-        { 
-        get { return aMatricula; } set { aMatricula = value; }
-        }
+            { get { return aMatricula; } set { aMatricula = value; } }
         public string Marca
             { get { return aMarca; } set { aMarca = value; } }
         public string Modelo
