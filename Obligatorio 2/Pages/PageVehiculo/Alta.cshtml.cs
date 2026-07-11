@@ -49,9 +49,9 @@ namespace Obligatorio_2.Pages.PageVehiculo
                 {
                     throw new Exception("Debe ingresar la Capacidad de Pasajeros");
                 }
-                if (double.TryParse(Request.Form["cappasajeros"], out _))
+                if (!int.TryParse(Request.Form["cappasajeros"], out _))
                 {
-                    throw new Exception("La cantidad debe ser numérico");
+                    throw new Exception("La capacidad debe ser numérico");
                 }
                 if (Request.Form["combustible"] == string.Empty)
                 {
@@ -65,7 +65,7 @@ namespace Obligatorio_2.Pages.PageVehiculo
                 {
                     throw new Exception("Debe ingresar el Precio por dia");
                 }
-                if (double.TryParse(Request.Form["precioxdia"] ,out _))
+                if (!double.TryParse(Request.Form["precioxdia"] ,out _))
                 {
                     throw new Exception("El precio debe ser numérico");
                 }

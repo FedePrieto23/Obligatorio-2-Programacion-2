@@ -21,7 +21,7 @@ namespace Obligatorio_2.Persistencia
                 AlquilerAccesorio unAlquilerAccesorio = new AlquilerAccesorio(
                     int.Parse(fila[0].ToString()),
                     fila[1].ToString(),
-                    int.Parse(fila[2].ToString())
+                    double.Parse(fila[2].ToString())
                 );
                 lista.Add(unAlquilerAccesorio);
             }
@@ -29,10 +29,10 @@ namespace Obligatorio_2.Persistencia
         }
         public bool Alta(AlquilerAccesorio unAlquilerAccesorio)
         {
-            string sql = "INSERT INTO AlquilerAccesorio (Id, Nombre, Cantidad) "
+            string sql = "INSERT INTO AlquilerAccesorio (Id, Nombre, Precio) "
                        + "VALUES (" + unAlquilerAccesorio.Id + ", '"
                        + unAlquilerAccesorio.Nombre + "', "
-                       + unAlquilerAccesorio.Cantidad + ")";
+                       + unAlquilerAccesorio.Precio + ")";
             return Conexion.Ejecutar(sql);
         }
 
@@ -47,7 +47,7 @@ namespace Obligatorio_2.Persistencia
         {
             string sql = "UPDATE AlquilerAccesorio "
                        + "SET Nombre = '" + unAlquilerAccesorio.Nombre + "', "
-                       + "Cantidad = " + unAlquilerAccesorio.Cantidad + " "
+                       + "Precio = " + unAlquilerAccesorio.Precio + " "
                        + "WHERE Id = " + unAlquilerAccesorio.Id;
 
             return Conexion.Ejecutar(sql);

@@ -38,10 +38,10 @@ namespace Obligatorio_2.Persistencia
         }
         public bool Alta(Alquiler unAlquiler)
         {
-            string sql = "INSERT INTO Alquiler (Id, FechaAlquiler, FechaRetiroV, FechaDevoV, Vehiculo, Cliente, ConductorAd, Accesorios, LugarRetiro, LugarDev, PrecioXDia, Estado) " +
+            string sql = "INSERT INTO Alquiler (Id, FechaAlquiler, FechaRetiroV, FechaDevoV, IdVehiculo, IdCliente, ConductorAd, IdAlquilerAcc, LugarRetiro, LugarDev, PrecioTotal, Estado) " +
                          "VALUES (" + unAlquiler.Id + ", '" + unAlquiler.FechaAlquiler.ToShortDateString() + "', '" + unAlquiler.FechaRetiroV.ToShortDateString() + "', '" +
-                         unAlquiler.FechaDevoV.ToShortDateString() + "', " + unAlquiler.Vehiculo.Matricula + ", " + unAlquiler.Cliente.Nombre + ", '" + unAlquiler.ConductorAd + "', " +
-                         unAlquiler.AlquilerAccesorio.Nombre + ", '" + unAlquiler.LugarRetiro + "', '" + unAlquiler.LugarDev + "', " + unAlquiler.PrecioTotal + ", '" + unAlquiler.Estado + "')";
+                         unAlquiler.FechaDevoV.ToShortDateString() + "', " + unAlquiler.Vehiculo.Id + ", " + unAlquiler.Cliente.Id + ", '" + unAlquiler.ConductorAd + "', " +
+                         unAlquiler.AlquilerAccesorio.Id + ", '" + unAlquiler.LugarRetiro + "', '" + unAlquiler.LugarDev + "', " + unAlquiler.PrecioTotal + ", '" + unAlquiler.Estado + "')";
         
             return Conexion.Ejecutar(sql);
         }
@@ -58,10 +58,10 @@ namespace Obligatorio_2.Persistencia
                        + "SET FechaAlquiler = '" + unAlquiler.FechaAlquiler.ToShortDateString() + "', "
                        + "FechaRetiroV = '" + unAlquiler.FechaRetiroV.ToShortDateString() + "', "
                        + "FechaDevoV = '" + unAlquiler.FechaDevoV.ToShortDateString() + "', "
-                       + "Vehiculo = " + unAlquiler.Vehiculo.Matricula + ", "
-                       + "Cliente = " + unAlquiler.Cliente.Nombre + ", "
+                       + "IdVehiculo = " + unAlquiler.Vehiculo.Id + ", "
+                       + "IdCliente = " + unAlquiler.Cliente.Id + ", "
                        + "ConductorAd = '" + unAlquiler.ConductorAd + "', "
-                       + "Accesorios = " + unAlquiler.AlquilerAccesorio.Nombre + ", "
+                       + "IdAlquilerAcc = " + unAlquiler.AlquilerAccesorio.Id + ", "
                        + "LugarRetiro = '" + unAlquiler.LugarRetiro + "', "
                        + "LugarDev = '" + unAlquiler.LugarDev + "', "
                        + "PrecioTotal = " + unAlquiler.PrecioTotal + ", "

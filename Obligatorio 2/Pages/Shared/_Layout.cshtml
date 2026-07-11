@@ -13,7 +13,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">Obligatorio 2</a>
+                <a class="navbar-brand" asp-area="" asp-page="/Index">Inicio</a>
 
                 <button class="navbar-toggler" type="button"
                         data-bs-toggle="collapse" data-bs-target="#mainNavbar"
@@ -54,20 +54,27 @@
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="reportesDropdown">
                                 <li>
-                                    <a class="dropdown-item" asp-area="" asp-page="/PageReportes/VentasXCliente">
-                                        Venta por Cliente
+                                    <a class="dropdown-item" asp-area="" asp-page="/PageReportes/AlquileresXMes">
+                                        Alquileres por Mes
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" asp-area="" asp-page="/PageReportes/VentasXArticulo">
-                                        Artículos Vendidos
+                                    <a class="dropdown-item" asp-area="" asp-page="/PageReportes/VehiculosXAlquileres">
+                                        Alquileres por Vehiculo
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" asp-area="" asp-page="/PageReportes/VentasXFecha">
-                                        Venta por Fecha
+                                    <a class="dropdown-item" asp-area="" asp-page="/PageReportes/AlquileresXFecha">
+                                        Alquiler por Fecha
                                     </a>
                                 </li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li>
+                                    <a class="dropdown-item" asp-area="" asp-page="/PageReportes/AlquileresXCliente">
+                                        Alquileres por Cliente
+                                    </a>
+                                </li>
+
                             </ul>
                         </li>
                     </ul>

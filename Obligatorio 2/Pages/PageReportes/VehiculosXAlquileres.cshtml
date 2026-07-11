@@ -1,0 +1,93 @@
+﻿@page
+@model Obligatorio_2.Pages.PageReportes.VehiculosXAlquileresModel
+@{
+}
+<div>
+    <h1 class="display-4 text-center">Vehiculos por Alquileres</h1>
+    <br /><br />
+    <form method="post">
+        <div class="row">
+            <div class="col-sm-4 text-right">
+                <div class="form-group">
+                    <select id="idVehiculos" name="idVehiculos" class="form-control">
+                        <option value="">Seleccione un Vehiculo</option>
+                        @foreach (var veh in Model.vehiculos)
+                        {
+                            <option value="@veh.Id">@veh.Matricula @veh.Marca</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-4 text-left">
+                <button type="submit" class="btn btn-info"
+                        asp-page-handler="Buscar">
+                    <i class="fa fa-search"></i> Buscar
+                </button>
+            </div>
+        </div>
+    </form>
+    <br /><br />
+    <table class="table text-center">
+        <thead>
+            <tr>
+                <td>Id Alquiler</td>
+                <td>Matricula</td>
+                <td>Marca</td>
+                <td>Modelo</td>
+                <td>Tipo</td>
+                <td>Precio Total</td>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.AlquileresXVehiculo != null && Model.AlquileresXVehiculo.Any())
+            {
+                @foreach (var unAlqui in Model.AlquileresXVehiculo)
+                {
+                    <tr>
+                        <td>@unAlqui.Id</td>
+                        <td>@unAlqui.Vehiculo.Matricula</td>
+                        <td>@unAlqui.Vehiculo.Marca</td>
+                        <td>@unAlqui.Vehiculo.Modelo</td>
+                        <td>@unAlqui.Vehiculo.Tipo</td>
+                        <td>$ @unAlqui.PrecioTotal.ToString("N2")</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5" class="text-center">
+                        No hay Alquileres para el Vehiculo seleccionado
+                    </td>
+                </tr>
+            }
+        </tbody>
+        @if (Model.AlquileresXVehiculo != null && Model.AlquileresXVehiculo.Any())
+        {
+            <tfoot>
+                <tr>
+                    <td colspan="3"></td>
+                    <td><strong>CANTIDAD DE ALQUILERES:</strong></td>
+                    <td><strong>@Model.CantidadAlquileres</strong></td>
+                </tr>
+                <tr>
+                    <td colspan="3"></td>
+                    <td><strong>IMPORTE TOTAL:</strong></td>
+                    <td><strong>$ @Model.Total.ToString("N2")</strong></td>
+                </tr>
+            </tfoot>
+        }
+    </table>
+</div>
+
+@if (!string.IsNullOrEmpty(Model.Mensaje))
+{
+    <div class="row">
+        <div class="col-sm-12">
+            <br />
+            <div class="alert alert-warning" role="alert">
+                @Model.Mensaje
+            </div>
+        </div>
+    </div>
+}

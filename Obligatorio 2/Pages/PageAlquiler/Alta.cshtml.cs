@@ -7,9 +7,9 @@ namespace Obligatorio_2.Pages.PageAlquiler
     public class AltaModel : PageModel
     {
         public string Mensaje { get; set; }
-        public List<Cliente> clientes { get; set; }
-        public List<Vehiculo> vehiculos { get; set; }
-        public List<AlquilerAccesorio> alquileraccesorio { get; set; }
+        public List<Cliente> clientes { get; set; } = new List<Cliente>();
+        public List<Vehiculo> vehiculos { get; set; } = new List<Vehiculo>();
+        public List<AlquilerAccesorio> alquileraccesorio { get; set; } = new List<AlquilerAccesorio>();
         public int id { get; set; } = 1;
         public void OnGet()
         {
@@ -35,26 +35,14 @@ namespace Obligatorio_2.Pages.PageAlquiler
                 {
                     throw new Exception("Debe ingresar la fecha del alquiler");
                 }
-                //if (!DateTime.TryParse(Request.Form["fechaalquiler"], out DateTime fechaalquiler))
-                //{
-                //    throw new Exception("El formato de Fecha no es válido");
-                //}
                 if (Request.Form["fecharetirov"] == string.Empty)
                 {
                     throw new Exception("Debe ingresar la fecha de retiro");
                 }
-                //if (!DateTime.TryParse(Request.Form["fecharetirov"], out DateTime fecharetirov))
-                //{
-                //    throw new Exception("El formato de Fecha no es válido");
-                //}
                 if (Request.Form["fechadevov"] == string.Empty)
                 {
                     throw new Exception("Debe ingresar la fecha de devolucion");
                 }
-                //if (!DateTime.TryParse(Request.Form["fechadevov"], out DateTime fechadevov))
-                //{
-                //    throw new Exception("El formato de Fecha no es válido");
-                //}
                 if (Request.Form["idVehiculo"] == string.Empty)
                 {
                     throw new Exception("Debe seleccionar un vehiculo");
@@ -75,10 +63,15 @@ namespace Obligatorio_2.Pages.PageAlquiler
                 {
                     throw new Exception("Debe ingresar el lugar de retiro");
                 }
-                if (double.TryParse(Request.Form["preciototal"], out _))
+                if (Request.Form["lugardev"] == string.Empty)
                 {
-                    throw new Exception("Debe ingresar el Precio total");
+                    throw new Exception("Debe ingresar el lugar de devolucion");
                 }
+                if (Request.Form["preciototal"] == string.Empty)
+                {
+                    throw new Exception("El precio total no se calculó correctamente. Revise la selección de vehículo y accesorio.");
+                }
+
                 if (Request.Form["estado"] == string.Empty)
                 {
                     throw new Exception("Debe ingresar Estado");
@@ -107,12 +100,11 @@ namespace Obligatorio_2.Pages.PageAlquiler
 
                 Alquiler unAlquiler= new Alquiler(Id, FechaAlquiler, FechaRetiroV, FechaDevov, unVehiculo, unCliente, ConductorAd, unAlquilerAccesorio, LugarRetiro, LugarDev, PrecioTotal, Estado);
 
-                //if (unaControladora.AltaAlquiler(unAlquiler))
-                //{
-                //    unaControladora.AltaCliente(unCliente);
-                //    return Redirect("/PageCliente/Lista");
-                //}
-                
+                if (unaControladora.AltaAlquiler(unAlquiler))
+                {
+                    return Redirect("/PageAlquiler/Lista");
+                }
+
             }
             catch (Exception Error)
             {

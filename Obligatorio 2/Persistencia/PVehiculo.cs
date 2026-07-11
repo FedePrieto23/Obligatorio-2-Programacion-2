@@ -39,7 +39,7 @@ namespace Obligatorio_2.Persistencia
 
         public bool Alta(Vehiculo unVehiculo)
         {
-            string precioxdia = unVehiculo.PrecioxDia.ToString().Replace(",", ".");
+            //string precioxdia = unVehiculo.PrecioxDia.ToString().Replace(",", ".");
             string sql = "INSERT INTO vehiculo " +
                          "(id, matricula, marca, modelo, año, tipo, cappasajeros, combustible, color, precioxdia, estado) " +
                          "VALUES (" + unVehiculo.Id + ",'"
@@ -51,7 +51,7 @@ namespace Obligatorio_2.Persistencia
                                     + unVehiculo.CapPasajeros + ",'"
                                     + unVehiculo.Combustible + "','"
                                     + unVehiculo.Color + "',"
-                                    + precioxdia + ",'"
+                                    + unVehiculo.PrecioxDia + ",'"
                                     + unVehiculo.Estado + "')";
 
             return Conexion.Ejecutar(sql);
@@ -65,7 +65,7 @@ namespace Obligatorio_2.Persistencia
 
         public bool Modificar(Vehiculo unVehiculo)
         {
-            string precioxdia = unVehiculo.PrecioxDia.ToString().Replace(",", ".");
+            //string precioxdia = unVehiculo.PrecioxDia.ToString().Replace(",", ".");
             string sql = "UPDATE vehiculo " +
                          "SET matricula = '" + unVehiculo.Matricula + "'," +
                          "marca = '" + unVehiculo.Marca + "'," +
@@ -75,7 +75,7 @@ namespace Obligatorio_2.Persistencia
                          "cappasajeros = " + unVehiculo.CapPasajeros + "," +
                          "combustible = '" + unVehiculo.Combustible + "'," +
                          "color = '" + unVehiculo.Color + "'," +
-                         "precioxdia = " + precioxdia + "," +
+                         "precioxdia = " + unVehiculo.PrecioxDia + "," +
                          "estado = '" + unVehiculo.Estado + "' " +
                          "WHERE id = " + unVehiculo.Id.ToString();
 

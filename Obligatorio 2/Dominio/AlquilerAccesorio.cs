@@ -4,17 +4,17 @@
     {
         private int aId;  
         private string aNombre;
-        private int aCantidad;
+        private double aPrecio;
 
         public int Id { get { return aId; } set { aId = value; } }
         public string Nombre { get { return aNombre; } set { aNombre = value; } }
-        public int Cantidad { get { return aCantidad; } set { aCantidad = value; } }
+        public double Precio { get { return aPrecio; } set { aPrecio = value; } }
     
-        public AlquilerAccesorio(int pId, string pNombre, int pCantidad)
+        public AlquilerAccesorio(int pId, string pNombre, double pPrecio)
         {
             aId = pId;
             aNombre = pNombre;
-            aCantidad = pCantidad;
+            aPrecio = pPrecio;
         }
     }
 }

@@ -1,0 +1,98 @@
+﻿@page
+@model Obligatorio_2.Pages.PageReportes.AlquileresXFechaModel
+@{
+}
+<div>
+    <h1 class="display-4 text-center">Alquileres por Fecha</h1>
+    <br /><br />
+    <form method="post">
+        <div class="row">
+            <div class="col-sm-4 text-right">
+                <div class="form-group">
+                    <label for="fecharetirov">Fecha Retiro:</label>
+                    <input type="date" name="fecharetirov" id="fecharetirov"
+                           class="form-control" asp-for="FechaRetiroV" />
+                </div>
+            </div>
+            <div class="col-sm-4 text-right">
+                <div class="form-group">
+                    <label for="fechadevov">Fecha Devolucion:</label>
+                    <input type="date" name="fechadevov" id="fechadevov"
+                           class="form-control" asp-for="FechaDevoV" />
+                </div>
+            </div>
+            <div class="col-sm-4 text-left" style="margin-top: 25px">
+                <button type="submit" class="btn btn-info"
+                        asp-page-handler="Buscar">
+                    <i class="fa fa-search"></i> Buscar
+                </button>
+            </div>
+        </div>
+    </form>
+    <br /><br />
+    <table class="table text-center">
+        <thead>
+            <tr>
+                <td>Fecha Retiro</td>
+                <td>Fecha Devolucion</td>
+                <td>Vehiculo</td>
+                <td>Cliente</td>
+                <td>Precio Total</td>
+                <td>Estado Alquiler</td>
+
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.AlquileresXFecha != null && Model.AlquileresXFecha.Any())
+            {
+                @foreach (var unaAlqui in Model.AlquileresXFecha)
+                {
+                    <tr>
+                        <td>@unaAlqui.FechaRetiroV.ToShortDateString()</td>
+                        <td>@unaAlqui.FechaDevoV.ToShortDateString()</td>
+                        <td>@unaAlqui.Vehiculo.Matricula</td>
+                        <td>@unaAlqui.Cliente.Nombre</td>
+                        <td> $@unaAlqui.PrecioTotal</td>
+                        <td>@unaAlqui.Estado</td>
+
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5" class="text-center">
+                        No hay Alquileres para el rango de fechas seleccionado
+                    </td>
+                </tr>
+            }
+        </tbody>
+        @if (Model.AlquileresXFecha != null && Model.AlquileresXFecha.Any())
+        {
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <strong>TOTAL:</strong>
+                    </td>
+                    <td>
+                        <strong>$ @Model.PrecioTotal</strong>
+                    </td>
+                </tr>
+            </tfoot>
+        }
+    </table>
+</div>
+@if (!string.IsNullOrEmpty(Model.Mensaje))
+{
+    <div class="row">
+        <div class="col-sm-12">
+            <br />
+            <div class="alert alert-warning" role="alert">
+                @Model.Mensaje
+            </div>
+        </div>
+    </div>
+}

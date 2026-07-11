@@ -1,0 +1,79 @@
+﻿@page
+@model Obligatorio_2.Pages.PageReportes.AlquileresXClienteModel
+
+<h1 class="display-4 text-center">Consulta de alquileres por cliente</h1>
+<hr />
+
+<div class="row">
+    <div class="col-sm-6">
+        <form method="post">
+            <div class="form-group">
+                <label for="cedula">Cédula / Pasaporte del cliente:</label>
+                <input type="text"
+                       name="cedula"
+                       id="cedula"
+                       class="form-control"
+                       value="@Model.Cedula" />
+            </div>
+            <button type="submit" class="btn btn-primary mt-2">Buscar</button>
+        </form>
+    </div>
+</div>
+
+@if (!string.IsNullOrEmpty(Model.Mensaje))
+{
+    <div class="alert alert-warning mt-3">
+        @Model.Mensaje
+    </div>
+}
+
+@if (Model.ClienteConsulta != null && Model.AlquileresCliente != null && Model.AlquileresCliente.Count > 0)
+{
+    <h3 class="mt-4">
+        Alquileres de @Model.ClienteConsulta.Nombre @Model.ClienteConsulta.Apellido (@Model.ClienteConsulta.Cedula)
+    </h3>
+
+    <table class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fecha Alquiler</th>
+                <th>Fecha Retiro</th>
+                <th>Fecha Devolución</th>
+                <th>Vehículo</th>
+                <th>Conductor Adicional</th>
+                <th>Accesorio</th>
+                <th>Lugar Retiro</th>
+                <th>Lugar Devolución</th>
+                <th>Precio Total</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var unAlqui in Model.AlquileresCliente)
+            {
+                var estadoTexto = unAlqui.Estado;
+
+                if (unAlqui.FechaAlquiler <= DateTime.Today && unAlqui.Estado == "alquilado")
+                {
+                    estadoTexto = unAlqui.Estado + " (ya comenzó)";
+                }
+
+                <tr>
+                    <td>@unAlqui.Id</td>
+                    <td>@unAlqui.FechaAlquiler.ToShortDateString()</td>
+                    <td>@unAlqui.FechaRetiroV.ToShortDateString()</td>
+                    <td>@unAlqui.FechaDevoV.ToShortDateString()</td>
+                    <td>@unAlqui.Vehiculo.Matricula</td>
+                    <td>@unAlqui.ConductorAd</td>
+                    <td>@unAlqui.AlquilerAccesorio.Nombre</td>
+                    <td>@unAlqui.LugarRetiro</td>
+                    <td>@unAlqui.LugarDev</td>
+                    <td>@unAlqui.PrecioTotal</td>
+                    <td>@estadoTexto</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

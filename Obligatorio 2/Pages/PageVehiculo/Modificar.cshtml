@@ -8,53 +8,52 @@
     <form method="post">
         <div class="row">
             <div class="col-sm-4">
-                <div class="form-group">
-                    <label for="id">Id:</label>
-                    <input type="text" name="id" id="id" readonly class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label for="matricula">Matricula:</label>
-                    <input type="text" name="matricula" id="matricula" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label for="marca">Marca:</label>
-                    <input type="text" name="marca" id="marca" class="form-control" />
-                </div>
-                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="id">Id:</label>
+                        <input type="text" name="id" id="id" class="form-control" readonly value="@Model.vehiculo.Id" />
+                    </div>
+                    <div class="form-group">
+                        <label for="matricula">Matricula:</label>
+                        <input type="text" name="matricula" id="matricula" class="form-control" value="@Model.vehiculo.Matricula" />
+                    </div>
+                    <div class="form-group">
+                        <label for="marca">Marca:</label>
+                        <input type="text" name="marca" id="marca" class="form-control" value="@Model.vehiculo.Marca" />
+                    </div>
                     <div class="form-group">
                         <label for="modelo">Modelo:</label>
-                        <input type="text" name="modelo" id="modelo" class="form-control" />
+                    <input type="text" name="modelo" id="modelo" class="form-control" value="@Model.vehiculo.Modelo" />
                     </div>
                     <div class="form-group">
                         <label for="año">Año de fabricacion:</label>
-                        <input type="date" name="año" id="año" class="form-control" />
+                    <input type="date" name="año" id="año" class="form-control" value="@Model.vehiculo.Año.ToString("yyyy-MM-dd")" />
                     </div>
                     <div class="form-group">
                         <label for="tipo">Tipo:</label>
-                        <input type="text" name="tipo" id="tipo" class="form-control" />
+                    <input type="text" name="tipo" id="tipo" class="form-control" value="@Model.vehiculo.Tipo" />
                     </div>
                     <div class="form-group">
                         <label for="cappasajeros">Capacidad de Pasajeros:</label>
-                        <input type="number" name="cappasajeros" id="cappasajeros" class="form-control" />
+                    <input type="number" name="cappasajeros" id="cappasajeros" class="form-control" value="@Model.vehiculo.CapPasajeros" />
                     </div>
                     <div class="form-group">
                         <label for="combustible">Combustible:</label>
-                        <input type="text" name="combustible" id="combustible" class="form-control" />
+                    <input type="text" name="combustible" id="combustible" class="form-control" value="@Model.vehiculo.Combustible" />
                     </div>
                     <div class="form-group">
                         <label for="color">Color:</label>
-                        <input type="text" name="color" id="color" class="form-control" />
+                    <input type="text" name="color" id="color" class="form-control" value="@Model.vehiculo.Color" />
                     </div>
                     <div class="form-group">
                         <label for="precioxdia">Precio por Dia:</label>
-                        <input type="number" name="precioxdia" id="precioxdia" class="form-control" />
+                    <input type="number" name="precioxdia" id="precioxdia" class="form-control" value="@Model.vehiculo.PrecioxDia" />
                     </div>
                     <div class="form-group">
                         <label for="estado">Estado:</label>
-                        <input type="text" name="estado" id="estado" class="form-control" />
+                    <input type="text" name="estado" id="estado" class="form-control" value="@Model.vehiculo.Estado" />
                     </div>
                 </div>
-            </div>
+           </div>
             <hr />
             <button type="submit" class="btn btn-success"
                     asp-page-handler="Modificar">

@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Obligatorio_2.Dominio;
+using Obligatorio_2.Persistencia;
+
 
 namespace Obligatorio_2.Pages.PageVehiculo
 {
@@ -13,7 +15,7 @@ namespace Obligatorio_2.Pages.PageVehiculo
             Controladora unaControladora = new Controladora();
             vehiculo = unaControladora.BuscarVehiculo(id);
         }
-        public IActionResult OnPostAgregar()
+        public IActionResult OnPostModificar()
         {
             try
             {
@@ -45,7 +47,7 @@ namespace Obligatorio_2.Pages.PageVehiculo
                 {
                     throw new Exception("Debe ingresar la Capacidad de Pasajeros");
                 }
-                if (int.TryParse(Request.Form["cappasajeros"], out _))
+                if (!int.TryParse(Request.Form["cappasajeros"], out _))
                 {
                     throw new Exception("La capacidad debe ser numerico");
                 }
@@ -61,7 +63,7 @@ namespace Obligatorio_2.Pages.PageVehiculo
                 {
                     throw new Exception("Debe ingresar el Precio por dia");
                 }
-                if (double.TryParse(Request.Form["precioxdia"], out _))
+                if (!double.TryParse(Request.Form["precioxdia"], out _))
                 {
                     throw new Exception("El precio por dia debe ser numerico");
                 }

@@ -1,8 +1,11 @@
 ﻿
 namespace Obligatorio_2.Dominio
 {
-    public class Cliente : Persona
+    public class Cliente
     {
+        private int aId;
+        private string aNombre;
+        private string aApellido;
         private string aCedula;
         private DateTime aFechaNac;
         private string aTelefono;
@@ -12,6 +15,9 @@ namespace Obligatorio_2.Dominio
         private string aNumLibreta;
         private DateTime aFechaVencLibreta;
 
+        public int Id { get { return aId; } set { aId = value; } }
+        public string Nombre { get { return aNombre; } set { aNombre = value; } }
+        public string Apellido { get { return aApellido; } set { aApellido = value; } }
         public string Cedula { get { return aCedula; } set { aCedula = value; } }
         public DateTime FechaNac { get { return aFechaNac; } set { aFechaNac = value; } }
         public string Telefono { get { return aTelefono; } set { aTelefono = value; } }
@@ -22,10 +28,11 @@ namespace Obligatorio_2.Dominio
         public DateTime FechaVencLibreta { get { return aFechaVencLibreta; } set { aFechaVencLibreta = value; } }
 
         public Cliente(int pId, string pNombre, string pApellido, string pCedula, DateTime pFechaNac, string pTelefono, string pCelular, string pEmail,
-           string pDireccion, string pNumLibreta, DateTime pFechaVencLibreta) :
-            base(pId, pNombre, pApellido)
+           string pDireccion, string pNumLibreta, DateTime pFechaVencLibreta)
         {
-            
+            aId = pId;
+            aNombre = pNombre;
+            aApellido = pApellido;
             aCedula = pCedula;
             aFechaNac = pFechaNac;
             aTelefono = pTelefono;

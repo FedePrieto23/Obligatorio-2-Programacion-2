@@ -36,9 +36,9 @@ namespace Obligatorio_2.Persistencia
         }
         public bool Alta(Cliente unCliente)
         {
-            string sql = "INSERT INTO cliente (id, nombre, apellido, cedula, fechanac, telefono, celular, email, direccion, numlibreta, fechavenclibreta)"
-                + "VALUES (" + unCliente.Id + ", '" + unCliente.Nombre + "', '" + unCliente.Apellido + "', '" + unCliente.Cedula + "', '" + unCliente.FechaNac.ToShortDateString() +
-                "', '" + unCliente.Telefono + "', '" + unCliente.Celular + "', '" + unCliente.NumLibreta + "', '" + unCliente.FechaVencLibreta.ToShortDateString() + "')";
+            string sql = "INSERT INTO Cliente (id, nombre, apellido, cedula, fechanac, telefono, celular, email, direccion, numlibreta, fechavenclibreta)"
+                + " VALUES (" + unCliente.Id + ", '" + unCliente.Nombre + "', '" + unCliente.Apellido + "', '" + unCliente.Cedula + "', '" + unCliente.FechaNac.ToShortDateString() +
+                "', '" + unCliente.Telefono + "', '" + unCliente.Celular + "', '" + unCliente.Email + "', '" + unCliente.Direccion + "', '" + unCliente.NumLibreta + "', '" + unCliente.FechaVencLibreta.ToShortDateString() + "')";
 
             return Conexion.Ejecutar(sql);
         }
@@ -52,7 +52,7 @@ namespace Obligatorio_2.Persistencia
         public bool Modificar(Cliente unCliente)
         {
             string sql = "UPDATE Cliente "
-                + "SET nombre = '" + unCliente.Nombre + "', " +
+                + " SET nombre = '" + unCliente.Nombre + "', " +
                 " apellido = '" + unCliente.Apellido + "', " +
                 " cedula = '" + unCliente.Cedula + "', " +
                 " fechanac = '" + unCliente.FechaNac.ToShortDateString() + "', " +

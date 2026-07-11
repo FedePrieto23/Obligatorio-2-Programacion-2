@@ -24,11 +24,10 @@ html, body {
 body {
     display: flex;
     flex-direction: column;
-    background-image: url('/Imagenes/fondoalquicar_1920x1080_stretched.png');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    background-color: #000000;
+    background-color: white;
 }
 
     body > .container {
@@ -56,4 +55,30 @@ nav {
 .nav-btn {
     color: white !important;
     background-color: gray !important;
+}
+.abm-panel {
+    background-color: rgba(0, 0, 0, 0.85);
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    color: #ffffff;
+}
+
+.abm-panel h1,
+.abm-panel h2 {
+    margin-bottom: 15px;
+}
+
+.abm-panel .table {
+    color: #ffffff;
+    background-color: transparent;
+}
+
+.abm-panel .table thead td,
+.abm-panel .table thead th {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.abm-panel .table tbody td {
+    background-color: transparent;
 }

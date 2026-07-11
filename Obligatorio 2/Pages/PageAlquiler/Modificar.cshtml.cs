@@ -7,10 +7,10 @@ namespace Obligatorio_2.Pages.PageAlquiiler
     public class ModificarModel : PageModel
     {
         public Alquiler alquiler { get; set; }
-        public string idVehiculo { get; set; }
-        public string idCliente { get; set; }
-        public string idAlquileraccesorio { get; set; }
-        public string Mensaje { get; set; }
+        public string idVehiculo { get; set; } = "";
+        public string idCliente { get; set; } = "";
+        public string idAlquileraccesorio { get; set; } = "";
+        public string Mensaje { get; set; } = "";
         
         public List<Vehiculo> vehiculos = new List<Vehiculo>();
         public List<Cliente> clientes = new List<Cliente>();
@@ -18,7 +18,13 @@ namespace Obligatorio_2.Pages.PageAlquiiler
         public void OnGet(int id)
         {
             Controladora unaControladora = new Controladora();
+            vehiculos = unaControladora.ListarVehiculos();
+            clientes = unaControladora.ListarClientes();
+            alquileraccesorio = unaControladora.ListarAlquilerAccesorios();
             alquiler = unaControladora.BuscarAlquiler(id);
+            idVehiculo = alquiler.Vehiculo.Id.ToString();
+            idCliente = alquiler.Cliente.Id.ToString();
+            idAlquileraccesorio = alquiler.AlquilerAccesorio.Id.ToString();
         }
         public IActionResult OnPostModificar()
         {
@@ -36,26 +42,14 @@ namespace Obligatorio_2.Pages.PageAlquiiler
                 {
                     throw new Exception("Debe ingresar la fecha del alquiler");
                 }
-                //if (!DateTime.TryParse(Request.Form["fechaalquiler"], out DateTime fechaalquiler))
-                //{
-                //    throw new Exception("El formato de Fecha no es válido");
-                //}
                 if (Request.Form["fecharetirov"] == string.Empty)
                 {
                     throw new Exception("Debe ingresar la fecha de retiro");
                 }
-                //if (!DateTime.TryParse(Request.Form["fecharetirov"], out DateTime fecharetirov))
-                //{
-                //    throw new Exception("El formato de Fecha no es válido");
-                //}
                 if (Request.Form["fechadevov"] == string.Empty)
                 {
                     throw new Exception("Debe ingresar la fecha de devolucion");
                 }
-                //if (!DateTime.TryParse(Request.Form["fechadevov"], out DateTime fechadevov))
-                //{
-                //    throw new Exception("El formato de Fecha no es válido");
-                //}
                 if (Request.Form["idVehiculo"] == string.Empty)
                 {
                     throw new Exception("Debe seleccionar un vehiculo");
@@ -76,13 +70,13 @@ namespace Obligatorio_2.Pages.PageAlquiiler
                 {
                     throw new Exception("Debe ingresar el lugar de retiro");
                 }
-                if (double.TryParse(Request.Form["preciototal"], out _))
+                if (!double.TryParse(Request.Form["preciototal"], out _))
                 {
                     throw new Exception("Debe ingresar el Precio total");
                 }
                 if (Request.Form["estado"] == string.Empty)
                 {
-                    throw new Exception("Debe ingresar Estado");
+                    throw new Exception("Debe ingresar el Estado");
                 }
 
                 Controladora unaControladora = new Controladora();
@@ -92,7 +86,7 @@ namespace Obligatorio_2.Pages.PageAlquiiler
                 DateTime FechaRetiroV = DateTime.Parse(Request.Form["fecharetirov"]);
                 DateTime FechaDevov = DateTime.Parse(Request.Form["fechadevov"]);
                 string ConductorAd = Request.Form["conductorad"];
-                string LugarRetiro = Request.Form["lugaretiro"];
+                string LugarRetiro = Request.Form["lugarretiro"];
                 string LugarDev = Request.Form["lugardev"];
                 double PrecioTotal = double.Parse(Request.Form["preciototal"]);
                 string Estado = Request.Form["estado"];
@@ -109,7 +103,7 @@ namespace Obligatorio_2.Pages.PageAlquiiler
                 
                 unaControladora.ModificarAlquiler(Id, FechaAlquiler, FechaRetiroV, FechaDevov, unVehiculo, unCliente, ConductorAd, unAlquilerAccesorio, LugarRetiro, LugarDev, PrecioTotal, Estado );
 
-                return Redirect("PageAlquiler/Lista");
+                return Redirect("/PageAlquiler/Lista");
             }
             catch (Exception Error)
             {

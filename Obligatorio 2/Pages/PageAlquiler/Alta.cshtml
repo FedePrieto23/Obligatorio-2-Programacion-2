@@ -22,11 +22,11 @@
                 </div>
                 <div class="form-group">
                     <label for="fechadevov">Fecha de Devolucion:</label>
-                    <input type="date" name="fechadevov" id="fechadevov" readonly class="form-control" />
+                    <input type="date" name="fechadevov" id="fechadevov" class="form-control" />
                 </div>
                 <div class="form-group">
                     <label for="idVehiculo">Vehiculo:</label>
-                    <select id="idVehiculo" name="idVehiculo" class="form-control">
+                    <select id="idVehiculo" name="idVehiculo" class="form-control" onchange="CargoPrecioTotal()">
                         <option value="">Seleccione un vehiculo</option>
                         @foreach (var vehi in Model.vehiculos)
                         {
@@ -50,8 +50,8 @@
                 </div>
                 <div class="form-group">
                     <label for="idAlquileraccesorio">Accesorios:</label>
-                    <select id="idAlquileraccesorio" name="idAlquileraccesorio" class="form-control">
-                        <option value="">Seleccione un cliente</option>
+                    <select id="idAlquileraccesorio" name="idAlquileraccesorio" class="form-control" onchange="CargoPrecioTotal()">
+                        <option value="">Seleccione un accesorio</option>
                         @foreach (var Alqacc in Model.alquileraccesorio)
                         {
                             <option value="@Alqacc.Id">@Alqacc.Nombre</option>
@@ -59,19 +59,19 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="lugarretiro">Lugar de Retiro:</label>
-                    <input type="text" name="lugarretiro" id="lugarretiro" class="form-control" />
+                    <label for="lugaretiro">Lugar de Retiro:</label>
+                    <input type="text" name="lugaretiro" id="lugaretiro" class="form-control" />
                 </div>
                 <div class="form-group">
                     <label for="lugardev">Lugar de Devolucion:</label>
                     <input type="text" name="lugardev" id="lugardev" class="form-control" />
                 </div>
                 <div class="form-group">
-                    <label for="preciototal;">Precio Total:</label>
-                    <input type="number" name="preciototal" id="preciototal" class="form-control" />
+                    <label for="preciototal">Precio Total:</label>
+                    <input type="number" name="preciototal" id="preciototal" class="form-control" readonly />
                 </div>
                 <div class="form-group">
-                    <label for="estado;">Estado:</label>
+                    <label for="estado">Estado:</label>
                     <input type="text" name="estado" id="estado" class="form-control" />
                 </div>
             </div>
@@ -96,3 +96,44 @@
     }
 </div>
 
+<script type="text/javascript">
+    const vehiculos = @Html.Raw(Json.Serialize(Model.vehiculos));
+    const accesorios = @Html.Raw(Json.Serialize(Model.alquileraccesorio));
+
+    function CargoPrecioTotal() {
+        var idVehiculo = document.getElementById("idVehiculo").value;
+        var idAccesorio = document.getElementById("idAlquileraccesorio").value;
+
+        var precioVehiculo = 0;
+        var precioAccesorio = 0;
+
+        if (idVehiculo) {
+            const unVeh = vehiculos.find(v => v.id == idVehiculo);
+            if (unVeh) {
+                precioVehiculo = unVeh.precioxDia;
+            }
+        }
+
+        if (idAccesorio) {
+            const unAcc = accesorios.find(a => a.id == idAccesorio);
+            if (unAcc) {
+                precioAccesorio = unAcc.precio;
+            }
+        }
+
+        var importe = 0;
+
+        if (parseInt(precioVehiculo)) {
+            importe = importe + parseInt(precioVehiculo);
+        }
+        if (parseInt(precioAccesorio)) {
+            importe = importe + parseInt(precioAccesorio);
+        }
+
+        if (importe > 0) {
+            document.getElementById("preciototal").value = importe;
+        } else {
+            document.getElementById("preciototal").value = "";
+        }
+    }
+</script>

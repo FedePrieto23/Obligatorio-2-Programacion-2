@@ -17,7 +17,6 @@ namespace Obligatorio_2.Dominio
         }
 
         #region " Clientes "
-
         public int ProximoClienteId()
         {
             return Persistencia.ProximoClienteId();
@@ -167,20 +166,35 @@ namespace Obligatorio_2.Dominio
 
         #region " Alquiler "
 
-        // Método con el nombre que venías usando en las otras regiones
         public int ProximoAlquilerId()
         {
             return Persistencia.ProximoAlquilerId();
         }
 
-        // Nombre correcto en plural
         public List<Alquiler> ListarAlquileres()
         {
             aListaAlquileres = Persistencia.ListaAlquileres();
             return aListaAlquileres;
         }
 
-        // Alias por si en algún lugar escribiste ListarAlquilers
+        public List<Alquiler> ListarAlquileresPorCliente(int pIdCliente)
+        {
+            List<Alquiler> todos = ListarAlquileres();
+
+            List<Alquiler> resultado = new List<Alquiler>();
+
+            foreach (Alquiler unAlquiler in todos)
+            {
+                if (unAlquiler.Cliente != null && unAlquiler.Cliente.Id == pIdCliente)
+                {
+                    resultado.Add(unAlquiler);
+                }
+            }
+
+            return resultado;
+        }
+
+
         public List<Alquiler> ListarAlquilers()
         {
             return ListarAlquileres();
@@ -302,21 +316,130 @@ namespace Obligatorio_2.Dominio
             }
             return false;
         }
-        public bool ModificarAlquilerAccesorio(int pId, string pNombre, int pCantidad)
+        public bool ModificarAlquilerAccesorio(int pId, string pNombre, double pPrecio)
         {
-            AlquilerAccesorio nuevoAlquilerAccesorio = new AlquilerAccesorio(pId, pNombre, pCantidad);
+            AlquilerAccesorio nuevoAlquilerAccesorio = new AlquilerAccesorio(pId, pNombre, pPrecio);
             AlquilerAccesorio unAlquilerAccesorio = this.BuscarAlquilerAccesorio(pId);
             if (unAlquilerAccesorio != null)
             {
                 if (Persistencia.ModificarAlquilerAccesorio(nuevoAlquilerAccesorio))
                 {
                     unAlquilerAccesorio.Nombre = pNombre;
-                    unAlquilerAccesorio.Cantidad = pCantidad;
+                    unAlquilerAccesorio.Precio = pPrecio;
                     return true;
                 }
             }
             return false;
         }
+        #endregion
+
+        #region " Reportes "
+        
+        public List<Alquiler> AlquileresXVehiculo(int pIdVehiculo)
+        {
+            List<Alquiler> lista = new List<Alquiler>();
+
+            foreach (Alquiler unAlqui in aListaAlquileres)
+            {
+                if (unAlqui.Vehiculo.Id == pIdVehiculo)
+                {
+                    lista.Add(unAlqui);
+                }
+            }
+            return lista;
+        }
+        public List<Alquiler> AlquileresXFecha(DateTime pFechaRetiroV, DateTime pFechaDevoV)
+        {
+            List<Alquiler> lista = new List<Alquiler>();
+
+            foreach (Alquiler unAlqui in aListaAlquileres)
+            {
+                if (unAlqui.FechaRetiroV >= pFechaRetiroV && unAlqui.FechaDevoV <= pFechaDevoV)
+                {
+                    lista.Add(unAlqui);
+                }
+            }
+            return lista;
+        }
+
+        public Cliente BuscarClientePorCedula(string pCedula)
+        {
+            foreach (Cliente unCliente in aListaClientes)
+            {
+                if (unCliente.Cedula == pCedula)
+                {
+                    return unCliente;
+                }
+            }
+            return null;
+        }
+
+        #endregion
+
+        #region Estadisticas
+        public List<string> AlquileresPorMesDelAnio()
+        {
+            List<string> resultado = new List<string>();
+            int[] cantidades = new int[13];
+            double[] montos = new double[13];
+
+            for (int i = 0; i < 13; i++)
+            {
+                cantidades[i] = 0;
+                montos[i] = 0;
+            }
+
+            short anioActual = short.Parse(DateTime.Now.Year.ToString());
+
+            foreach (Alquiler unAlquiler in aListaAlquileres)
+            {
+                DateTime fecha = unAlquiler.FechaAlquiler;
+                short anioAlquiler = short.Parse(fecha.Year.ToString());
+                short mesAlquiler = short.Parse(fecha.Month.ToString());
+
+                if (anioAlquiler == anioActual)
+                {
+                    cantidades[mesAlquiler] = cantidades[mesAlquiler] + 1;
+                    montos[mesAlquiler] = montos[mesAlquiler] + unAlquiler.PrecioTotal;
+                }
+            }
+
+            string[] nombresMes = new string[]
+            {
+        "null", "Enero", "Febrero", "Marzo", "Abril", "Mayo",
+        "Junio", "Julio", "Agosto", "Setiembre", "Octubre",
+        "Noviembre", "Diciembre"
+            };
+
+            for (int i = 1; i < 13; i++)
+            {
+                string linea = nombresMes[i] + ";" + cantidades[i] + ";" + montos[i].ToString("N2");
+                resultado.Add(linea);
+            }
+
+            return resultado;
+        }
+
+        public double GananciasAnioActual()
+        {
+            double total = 0;
+            short anioActual = short.Parse(DateTime.Now.Year.ToString());
+
+            foreach (Alquiler unAlquiler in aListaAlquileres)
+            {
+                DateTime fecha = unAlquiler.FechaAlquiler;
+                short anioAlquiler = short.Parse(fecha.Year.ToString());
+
+                if (anioAlquiler == anioActual)
+                {
+                    total = total + unAlquiler.PrecioTotal;
+                }
+            }
+
+            return total;
+        }
+
+
         #endregion
 
         #region " Cargo Listas "

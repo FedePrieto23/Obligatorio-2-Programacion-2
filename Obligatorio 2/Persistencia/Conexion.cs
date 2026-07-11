@@ -8,7 +8,7 @@ namespace Obligatorio_2.Persistencia
     {
 
 
-        private static string source = "DESKTOP-2GR15MM\\SQLEXPRESS";
+        private static string source = "localhost\\SQLEXPRESS";
 
         private static string baseDeDatos = "Obligatorio2";
         private string CadenaConexion = "data source=" + source + "; " +

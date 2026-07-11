@@ -1,0 +1,60 @@
+﻿@page
+@model Obligatorio_2.Pages.PageReportes.AlquileresXMesModel
+@{
+}
+<div>
+    <h1 class="display-4 text-center">Alquileres por Mes del Año</h1>
+    <br /><br />
+
+    <table class="table text-center">
+        <thead>
+            <tr>
+                <td>Mes</td>
+                <td>Cantidad de Alquileres</td>
+                <td>Ganancia del Mes</td>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.AlquileresMes != null && Model.AlquileresMes.Any())
+            {
+                foreach (var linea in Model.AlquileresMes)
+                {
+                    var partes = linea.Split(';');
+                    <tr>
+                        <td>@partes[0]</td>
+                        <td>@partes[1]</td>
+                        <td>$ @partes[2]</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="3">No hay datos de alquileres para el año actual</td>
+                </tr>
+            }
+        </tbody>
+        @if (Model.AlquileresMes != null && Model.AlquileresMes.Any())
+        {
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td><strong>Total del Año</strong></td>
+                    <td><strong>$ @Model.TotalAnual.ToString("N2")</strong></td>
+                </tr>
+            </tfoot>
+        }
+    </table>
+</div>
+
+@if (!string.IsNullOrEmpty(Model.Mensaje))
+{
+    <div class="row">
+        <div class="col-sm-12">
+            <br />
+            <div class="alert alert-warning" role="alert">
+                @Model.Mensaje
+            </div>
+        </div>
+    </div>
+}

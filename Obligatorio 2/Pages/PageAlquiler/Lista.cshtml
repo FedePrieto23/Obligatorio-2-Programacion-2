@@ -13,16 +13,16 @@
         <thead>
             <tr>
                 <td>ID</td>
-                <td>FechaAlquiler</td>
-                <td>FechaRetiroV</td>
-                <td>FechaDevoV</td>
+                <td>Fecha de Alquiler</td>
+                <td>Fecha de Retiro</td>
+                <td>Fecha de Devolucion</td>
                 <td>Vehiculo</td>
                 <td>Cliente</td>
-                <td>ConductorAd</td>
-                <td>AlquilerAccesorio</td>
-                <td>LugarRetiro</td>
-                <td>LugarDev</td>
-                <td>PrecioTotal</td>
+                <td>Conductor Adicional</td>
+                <td>Accesorio</td>
+                <td>Lugar de Retiro</td>
+                <td>Lugar de Devolucion</td>
+                <td>Precio Total</td>
                 <td>Estado</td>
                 <td>Acciones</td>
             </tr>
@@ -34,21 +34,23 @@
                 {
                     <tr>
                         <td>@unAlqui.Id</td>
-                        <td>@unAlqui.FechaAlquiler.ToShortDateString()</td>
-                        <td>@unAlqui.FechaRetiroV</td>
-                        <td>@unAlqui.FechaDevoV</td>
-                        <td>@unAlqui.Vehiculo</td>
-                        <td>@unAlqui.Cliente</td>
+                        <td>@unAlqui.FechaAlquiler.ToString("yyyy-MM-dd")</td>
+                        <td>@unAlqui.FechaRetiroV.ToString("yyyy-MM-dd")</td>
+                        <td>@unAlqui.FechaDevoV.ToString("yyyy-MM-dd")</td>
+                        <td>@unAlqui.Vehiculo.Matricula</td>
+                        <td>@unAlqui.Cliente.Nombre</td>
                         <td>@unAlqui.ConductorAd</td>
-                        <td>@unAlqui.AlquilerAccesorio</td>
+                        <td>@unAlqui.AlquilerAccesorio.Nombre</td>
                         <td>@unAlqui.LugarRetiro</td>
                         <td>@unAlqui.LugarDev</td>
                         <td>@unAlqui.PrecioTotal</td>
                         <td>@unAlqui.Estado</td>
                         <td>
                             <div class="mt-2">
-                                <a asp-page="./Detalle" class="btn btn-primary"
+                                <a asp-page="./Detalle" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tooltip on top"
                                    asp-route-id="@unAlqui.Id"><i class="fa fa-eye"></i></a>
+                                <a asp-page="./Modificar" class="btn btn-warning"
+                                   asp-route-id="@unAlqui.Id"><i class="fa fa-edit"></i></a>
                                 <a asp-page="./Baja" class="btn btn-danger"
                                    asp-route-id="@unAlqui.Id"><i class="fa fa-trash-alt"></i></a>
                             </div>

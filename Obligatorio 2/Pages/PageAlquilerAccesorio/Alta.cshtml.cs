@@ -29,20 +29,20 @@ namespace Obligatorio_2.Pages.PageAlquilerAccesorio
                 {
                     throw new Exception("Debe ingresar el Nombre");
                 }
-                if (Request.Form["cantidad"] == string.Empty)
+                if (Request.Form["precio"] == string.Empty)
                 {
-                    throw new Exception("Debe ingresar la Cantidad");
+                    throw new Exception("Debe ingresar el Precio");
                 }
-                if (!int.TryParse(Request.Form["cantidad"], out _))
+                if (!double.TryParse(Request.Form["precio"], out _))
                 {
-                    throw new Exception("La cantidad debe ser numérico");
+                    throw new Exception("el precio debe ser numérico");
                 }
 
                 int Id = int.Parse(Request.Form["id"]);
                 string Nombre = Request.Form["nombre"];
-                int Cantidad = int.Parse(Request.Form["cantidad"]);
+                double Precio = double.Parse(Request.Form["precio"]);
 
-                AlquilerAccesorio unAlquilerAccesorio = new AlquilerAccesorio(Id, Nombre, Cantidad);
+                AlquilerAccesorio unAlquilerAccesorio = new AlquilerAccesorio(Id, Nombre, Precio);
 
                 Controladora unaControladora = new Controladora();
                 unaControladora.AltaAlquilerAccesorio(unAlquilerAccesorio);
